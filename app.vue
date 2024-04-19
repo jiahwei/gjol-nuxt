@@ -5,5 +5,5 @@
 </template>
 
 <script setup lang="ts">
-const layout = "desktop";
+const layout = 'desktop';
 </script>

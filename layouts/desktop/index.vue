@@ -10,9 +10,7 @@
     </main>
     <footer class="layout-footer">
       <div class="layout-footer__main">
-        <a href="https://beian.miit.gov.cn/" target="_blank"
-          >晋ICP备2023024244号</a
-        >
+        <a href="https://beian.miit.gov.cn/" target="_blank">晋ICP备2023024244号</a>
       </div>
     </footer>
   </div>
@@ -21,7 +19,7 @@
 <script lang="ts" setup></script>
 
 <style lang="less">
-@import "~/assets/less/layout.less";
+@import '~/assets/less/layout.less';
 
 #page {
   & > main {
