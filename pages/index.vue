@@ -14,11 +14,7 @@ const payload = {
   startDate: '2023-04-17',
   endDate: '2024-04-17'
 };
-const { data } = await usePOST<[]>('/getBulletinByDate', payload, {
-  default: () => {
-    return [];
-  }
-});
+const { data } = await usePOST<[]>('/getBulletinByDate', payload, () => []);
 </script>
 
 <style scoped>
