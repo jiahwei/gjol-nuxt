@@ -1,20 +1,17 @@
 <template>
   <div id="test" class="">
     {{ nowDay }}
-    {{ data }}
+    {{ bulletinInfo.totalLen }}
   </div>
 </template>
 
 <script lang="ts" setup>
 import { useDateFormat, useNow } from '@vueuse/core';
+import { bulletinApi } from '@/api/index';
 
 const nowDay = useDateFormat(useNow(), 'YYYY-MM-DD');
 
-const payload = {
-  startDate: '2023-04-17',
-  endDate: '2024-04-17'
-};
-const { data } = await usePOST<[]>('/getBulletinByDate', payload, () => []);
+const { data: bulletinInfo } = await bulletinApi.getNewBulletin();
 </script>
 
 <style scoped>
