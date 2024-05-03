@@ -8,7 +8,7 @@ import {
   presetWebFonts,
   transformerDirectives,
   transformerVariantGroup
-} from 'unocss'
+} from 'unocss';
 
 export default defineConfig({
   shortcuts: [
@@ -27,11 +27,8 @@ export default defineConfig({
     presetWebFonts({
       fonts: {
         // ...
-      },
-    }),
+      }
+    })
   ],
-  transformers: [
-    transformerDirectives(),
-    transformerVariantGroup(),
-  ],
-})
+  transformers: [transformerDirectives(), transformerVariantGroup()]
+});
