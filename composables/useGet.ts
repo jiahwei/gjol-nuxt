@@ -1,10 +1,11 @@
-import type { UseFetchOptions } from 'nuxt/app';
+import type { UseFetchOptions } from 'nuxt/app'
 
-type Options<T> = Omit<UseFetchOptions<T>, 'default'> & { default: () => T | Ref<T> };
-type query<T> = UseFetchOptions<T>['query'];
-type Url = string | (() => string);
-type defaultValue<T> = () => T | Ref<T>;
-type OtherConfig<T> = Omit<UseFetchOptions<T>, 'default'>;
+// type defaultValue<T> = () => (T extends void ? unknown : T) | Ref<T extends void ? unknown : T>
+type defaultValue<T> = () => T | Ref<T>
+type Options<T> = Omit<UseFetchOptions<T>, 'default'> & { default: defaultValue<T> }
+type query<T> = UseFetchOptions<T>['query']
+type Url = string | (() => string)
+type OtherConfig<T> = Omit<UseFetchOptions<T>, 'default'>
 
 /**
  * 发起GET请求
@@ -20,7 +21,7 @@ export function useGet<T>(url: Url, defaultValue: defaultValue<T>, query: query<
     query,
     key: toValue(url),
     default: defaultValue,
-    ...otherConfig
-  };
-  return useAPI(url, options);
+    ...otherConfig,
+  }
+  return useAPI(url, options)
 }

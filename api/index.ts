@@ -1,3 +1,3 @@
-import bulletinApi from './bulletin';
+import bulletinApi from './bulletin'
 
-export { bulletinApi };
+export { bulletinApi }

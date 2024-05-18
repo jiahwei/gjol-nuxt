@@ -7,17 +7,37 @@ import {
   presetUno,
   presetWebFonts,
   transformerDirectives,
-  transformerVariantGroup
-} from 'unocss';
+  transformerVariantGroup,
+} from 'unocss'
 
 export default defineConfig({
   shortcuts: [
     // ...
+    {
+      'layout-main': 'max-w-[1280px] ml-auto mr-auto',
+    },
   ],
   theme: {
     colors: {
       // ...
-    }
+      brand: {
+        primary: 'var(--brand-color-5)',
+        main: 'var(--brand-color-5)',
+        disabled: 'var(--brand-color-3)',
+        hover: 'var(--brand-color-4)',
+        active: 'var(--brand-color-6)',
+      },
+      bg: {
+        page: 'var(--bg-color-page)',
+      },
+      font: {
+        primary: 'var(--text-color-primary)',
+        secondary: 'var(--text-color-secondary)',
+        placeholder: 'var(--text-color-placeholder)',
+        disabled: 'var(--text-color-disabled)',
+        link: 'var(--text-color-link)',
+      },
+    },
   },
   presets: [
     presetUno(),
@@ -27,8 +47,8 @@ export default defineConfig({
     presetWebFonts({
       fonts: {
         // ...
-      }
-    })
+      },
+    }),
   ],
-  transformers: [transformerDirectives(), transformerVariantGroup()]
-});
+  transformers: [transformerDirectives(), transformerVariantGroup()],
+})
