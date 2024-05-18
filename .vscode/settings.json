@@ -1,0 +1,6 @@
+{
+    // Enable ESlint flat config support
+    "eslint.experimental.useFlatConfig": true,
+    "less.validate": false,
+    "css.validate": false,
+  }
