@@ -1,5 +1,5 @@
 <template>
-  <footer class="h-[--height-footer] w-full">
+  <footer>
     <div class="h-full layout-main flex flex-col">
       <a class="cursor-pointer text-[--text-color-primary] hover:text-[--text-color-brand]" href="https://beian.miit.gov.cn/" target="_blank">晋ICP备2023024244号</a>
     </div>
@@ -8,4 +8,9 @@
 
 <script lang="ts" setup></script>
 
-<style></style>
+<style scoped>
+footer{
+  @apply py-4 bg-footer-primary w-full;
+  box-shadow: inset 0 1px 0 var(--bg-color-borer);
+}
+</style>

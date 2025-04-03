@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div id="app">
     <app-header />
-    <main id="main">
+    <main class="min-h-[calc(100vh-var(--header-height))] layout-main">
       <slot />
     </main>
     <app-footer />
@@ -14,7 +14,4 @@ import appFooter from './footer.vue'
 </script>
 
 <style>
-#main {
-  min-height: calc(100vh - var(--height-header));
-}
 </style>

@@ -14,7 +14,7 @@ export default defineConfig({
   shortcuts: [
     // ...
     {
-      'layout-main': 'max-w-[1280px] ml-auto mr-auto',
+      'layout-main': 'mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl',
     },
   ],
   theme: {
@@ -26,6 +26,13 @@ export default defineConfig({
         disabled: 'var(--brand-color-3)',
         hover: 'var(--brand-color-4)',
         active: 'var(--brand-color-6)',
+        borer: 'var(--bg-color-borer)',
+      },
+      header: {
+        primary: 'var(--bg-color-container)',
+      },
+      footer: {
+        primary: 'var(--bg-color-container)',
       },
       bg: {
         page: 'var(--bg-color-page)',
