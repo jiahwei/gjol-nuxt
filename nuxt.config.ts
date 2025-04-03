@@ -6,22 +6,27 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
+
   typescript: {
     typeCheck: true,
   },
+
   nitro: {
     devProxy: {
       '/api/': {
-        target: 'http://124.220.78.194:8000/',
+        // target: 'http://124.220.78.194:8000/',
+        target: 'http://localhost:8000/',
         changeOrigin: true,
       },
     },
   },
+
   runtimeConfig: {
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE,
     },
   },
+
   modules: [
     '@nuxt/devtools',
     '@nuxtjs/google-fonts',
@@ -33,14 +38,19 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
   ],
+
   css: ['~/assets/css/normalize.css', '~/assets/css/theme.css'],
+
   colorMode: {
     preference: 'system', // default value of $colorMode.preference
     fallback: 'light', // fallback value if not system preference found
   },
+
   eslint: {
     config: {
       stylistic: true,
     },
   },
+
+  compatibilityDate: '2025-04-03',
 })

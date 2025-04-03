@@ -1,7 +1,7 @@
 <template>
-  <header class="h-[--height-header] backdrop-blur-8 z-50 bg-bg-page sticky top-0 transition-colors">
+  <header :class="{ top: isTop }">
     <div class="h-full flex items-center justify-between layout-main">
-      <img class="h-[32px] w-[32px]" src="/favicon.ico">
+      <img class="h-[32px] w-[32px]" src="/favicon.ico" />
       <button class="cursor-pointer text-font-primary" :class="isDark ? 'i-carbon-moon' : 'i-carbon-sun'" @click="changeColorMode" />
     </div>
   </header>
@@ -16,6 +16,18 @@ const isDark = computed(() => {
 function changeColorMode() {
   colorMode.preference = colorMode.value === 'light' ? 'dark' : 'light'
 }
+// 页面滚动位置
+const { y: scrollY } = useWindowScroll()
+const isTop = computed(() => {
+  return scrollY.value === 0
+})
 </script>
 
-<style></style>
+<style scoped>
+header {
+  @apply h-[--height-header] backdrop-blur-8 z-50 bg-header-primary sticky top-0;
+}
+.top {
+  box-shadow: inset 0 -1px 0 var(--bg-color-borer);
+}
+</style>
