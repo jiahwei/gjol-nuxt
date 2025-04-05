@@ -35,10 +35,14 @@ export default defineNuxtConfig({
 
   nitro: {
     devProxy: {
-      '/api/': {
-        // target: 'http://124.220.78.194:8000/',
-        target: 'http://localhost:8000/',
+      '/api': {
+        target: process.env.NUXT_PUBLIC_API_BASE,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': '*',
+        },
         changeOrigin: true,
+        prependPath: true,
       },
     },
   },
