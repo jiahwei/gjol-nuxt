@@ -1,31 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: {
-    enabled: true,
-    timeline: {
-      enabled: true,
-    },
-  },
-
-  typescript: {
-    typeCheck: true,
-  },
-
-  nitro: {
-    devProxy: {
-      '/api/': {
-        // target: 'http://124.220.78.194:8000/',
-        target: 'http://localhost:8000/',
-        changeOrigin: true,
-      },
-    },
-  },
-
-  runtimeConfig: {
-    public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE,
-    },
-  },
 
   modules: [
     '@nuxt/devtools',
@@ -37,7 +11,12 @@ export default defineNuxtConfig({
     '@formkit/auto-animate',
     '@nuxt/eslint',
     '@nuxt/image',
-  ],
+  ], devtools: {
+    enabled: true,
+    timeline: {
+      enabled: true,
+    },
+  },
 
   css: ['~/assets/css/normalize.css', '~/assets/css/theme.css'],
 
@@ -46,11 +25,31 @@ export default defineNuxtConfig({
     fallback: 'light', // fallback value if not system preference found
   },
 
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.NUXT_PUBLIC_API_BASE,
+    },
+  },
+
+  compatibilityDate: '2025-04-03',
+
+  nitro: {
+    devProxy: {
+      '/api/': {
+        // target: 'http://124.220.78.194:8000/',
+        target: 'http://localhost:8000/',
+        changeOrigin: true,
+      },
+    },
+  },
+
+  typescript: {
+    typeCheck: true,
+  },
+
   eslint: {
     config: {
       stylistic: true,
     },
   },
-
-  compatibilityDate: '2025-04-03',
 })

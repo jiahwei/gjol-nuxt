@@ -1,13 +1,20 @@
 <template>
-  <div id="main" class="w-full h-full"></div>
+  <div id="main" class="w-full h-full" @click="test"></div>
 </template>
 
 <script lang="ts" setup>
 import * as echarts from 'echarts'
 import type { ShallowRef } from 'vue'
+import type { BulletinInfo, VersionInfo } from './testData'
+import { testData } from './testData'
 import moment from '~/plugins/moment'
-import type { BulletinInfo, VersionInfo } from "./testData"
-import {testData} from "./testData"
+
+// const config = useRuntimeConfig()
+async function test() {
+  await $fetch(`/api/bulletins/new`, {
+    method: 'GET',
+  })
+}
 
 type EChartsOption = echarts.EChartsOption
 const chartDom: ShallowRef<HTMLElement | null> = shallowRef(null)
@@ -46,6 +53,7 @@ interface VersionMap {
   [key: string]: BulletinInfo | Pick<VersionInfo, 'acronyms'>
 }
 const vsrsionMap: VersionMap = reactive({})
+
 function showAllData() {
   const xData: string[] = []
   const seriesData: number[] = []

@@ -1,3 +1,6 @@
+import { useGet } from '@/composables/useGet'
+
+const baseUrl = `/api`
 interface ContentTotalArr {
   name: string
   leng: number
@@ -25,6 +28,6 @@ const defaultGetNewBulletin: GetNewBulletin = {
 
 export default {
   getNewBulletin: () => {
-    return useGet<GetNewBulletin>('/getNewBulletin', () => defaultGetNewBulletin)
+    return useGet<GetNewBulletin>(`${baseUrl}/bulletins/new`, () => defaultGetNewBulletin)
   },
 }

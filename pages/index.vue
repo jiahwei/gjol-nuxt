@@ -6,12 +6,13 @@
 
 <script lang="ts" setup>
 // import { useDateFormat, useNow } from '@vueuse/core'
-import { bulletinApi } from '@/api/index'
+// import { bulletinApi } from '@/api/index'
 import totalCharts from '~/components/totalCharts.vue'
 
 // const nowDay = useDateFormat(useNow(), 'YYYY-MM-DD')
 
-const { data: bulletinInfo } = await bulletinApi.getNewBulletin()
+// const { data: bulletinInfo } = await bulletinApi.getNewBulletin()
+// console.log('bulletinInfo', bulletinInfo)
 </script>
 
 <style scoped>
