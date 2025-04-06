@@ -1,5 +1,6 @@
 <template>
   <div id="app-home" class="text-font-primary transition-colors">
+    {{ newBulletinInfo }}
   </div>
 </template>
 
