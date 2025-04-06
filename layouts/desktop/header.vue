@@ -18,7 +18,7 @@ function changeColorMode() {
 }
 // 页面滚动位置
 const { y: scrollY } = useWindowScroll()
-const isTop = computed(() => {
+const isTop = computed<boolean>(() => {
   return scrollY.value === 0
 })
 </script>

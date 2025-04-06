@@ -26,26 +26,10 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE,
-    },
+    apiBase: process.env.NUXT_PUBLIC_API_BASE,
   },
 
   compatibilityDate: '2025-04-03',
-
-  nitro: {
-    devProxy: {
-      '/api': {
-        target: process.env.NUXT_PUBLIC_API_BASE,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*',
-        },
-        changeOrigin: true,
-        prependPath: true,
-      },
-    },
-  },
 
   typescript: {
     typeCheck: true,
