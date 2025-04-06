@@ -1,5 +1,5 @@
 <template>
-  <div id="main" class="w-full h-full" @click="test"></div>
+  <div id="main" class="w-full h-full"></div>
 </template>
 
 <script lang="ts" setup>

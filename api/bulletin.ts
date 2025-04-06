@@ -9,6 +9,7 @@ interface ContentTotalArr {
 interface GetNewBulletin {
   date: Date | undefined
   totalLen: number
+  orderId: number
   contentTotalArr: ContentTotalArr[]
   name: string
   releaseID: number
