@@ -1,7 +1,7 @@
 <template>
   <header :class="{ top: isTop }">
     <div class="h-full flex items-center justify-between layout-main">
-      <img class="h-[32px] w-[32px]" src="/favicon.ico" />
+      <span class="text-[--text-color-primary] hover:text-[--text-color-brand]">GjolDB</span>
       <button class="cursor-pointer text-font-primary" :class="isDark ? 'i-carbon-moon' : 'i-carbon-sun'" @click="changeColorMode" />
     </div>
   </header>

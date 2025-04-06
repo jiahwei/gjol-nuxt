@@ -74,4 +74,4 @@ bun run preview
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
-npx openapi-typescript http://127.0.0.1:8000/docs/openapi.json -o ./types/api.d.ts
+npx openapi-typescript http://127.0.0.1:8000/openapi.json -o ./api-types/api.d.ts
