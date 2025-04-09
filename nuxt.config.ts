@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-
   modules: [
     '@nuxt/devtools',
     '@nuxtjs/google-fonts',
@@ -11,7 +10,9 @@ export default defineNuxtConfig({
     '@formkit/auto-animate',
     '@nuxt/eslint',
     '@nuxt/image',
-  ], devtools: {
+  ],
+
+  devtools: {
     enabled: true,
     timeline: {
       enabled: true,
@@ -29,7 +30,19 @@ export default defineNuxtConfig({
     apiBase: process.env.NUXT_PUBLIC_API_BASE,
   },
 
+  routeRules: {
+    '/': { static: true },
+  },
+
   compatibilityDate: '2025-04-03',
+
+  nitro: {
+    preset: 'static',
+    prerender: {
+      routes: ['/'],
+      crawlLinks: true,
+    },
+  },
 
   typescript: {
     typeCheck: true,

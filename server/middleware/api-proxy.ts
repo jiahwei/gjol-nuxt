@@ -1,14 +1,13 @@
 import { joinURL } from 'ufo'
 
 export default defineEventHandler((event) => {
-  // 检查路径是否以/api/开头
-  console.log(event)
   if (!event.path.startsWith('/api/')) {
-    return // 不处理非/api/路径
+    return
   }
 
   const proxyUrl = useRuntimeConfig().apiBase as string
-  const targetUrl = joinURL(proxyUrl, event.path)
+  const path = event.path.replace(/^\/api\//, '')
+  const targetUrl = joinURL(proxyUrl, path)
 
   return proxyRequest(event, targetUrl)
 })

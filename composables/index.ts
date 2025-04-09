@@ -1,4 +1,4 @@
-export * from './uesPOST'
+export * from './uesPost'
 export * from './useAPI'
 export * from './useDevice'
 export * from './useGet'
