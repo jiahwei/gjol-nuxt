@@ -5,6 +5,7 @@ export default withNuxt({
   rules: {
     'vue/max-attributes-per-line': 'off',
     'vue/html-self-closing': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
   },
 },
 {

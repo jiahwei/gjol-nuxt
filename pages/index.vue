@@ -6,9 +6,9 @@
 
 <script lang="ts" setup>
 import { provide } from 'vue'
-import { useGetNewButtion } from '~/composables/index/useGetNewButtion'
+import { bulletinApi } from '@/api/index'
 
-const { newBulletinInfo } = useGetNewButtion()
+const { data: newBulletinInfo } = await bulletinApi.getNewBulletin()
 provide('newBulletinInfo', newBulletinInfo)
 </script>
 
