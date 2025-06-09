@@ -4,7 +4,7 @@ import {
   presetAttributify,
   presetIcons,
   presetTypography,
-  presetUno,
+  presetWind4,
   presetWebFonts,
   transformerDirectives,
   transformerVariantGroup,
@@ -19,7 +19,6 @@ export default defineConfig({
   ],
   theme: {
     colors: {
-      // ...
       brand: {
         primary: 'var(--brand-color-5)',
         main: 'var(--brand-color-5)',
@@ -47,7 +46,11 @@ export default defineConfig({
     },
   },
   presets: [
-    presetUno(),
+    presetWind4({
+      preflights: {
+        reset: true,
+      },
+    }),
     presetAttributify(),
     presetIcons(),
     presetTypography(),
