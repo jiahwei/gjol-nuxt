@@ -19,7 +19,7 @@
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
-.light-mode {
+.light {
   --brand-color-1: #eef4ff;
   --brand-color-2: #d1e4ff;
   --brand-color-3: #a3ccff;
@@ -109,7 +109,7 @@
   --text-color-brand: var(--brand-color);
   --text-color-link: var(--brand-color);
 }
-.dark-mode {
+.dark {
   --brand-color-1: #0894fa20;
   --brand-color-2: #00325c;
   --brand-color-3: #004881;

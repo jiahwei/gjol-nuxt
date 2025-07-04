@@ -19,11 +19,12 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ['~/assets/css/theme.css'],
+  // css: ['~/assets/css/theme.css'],
 
   colorMode: {
     preference: 'system', // default value of $colorMode.preference
     fallback: 'light', // fallback value if not system preference found
+    classSuffix: '',
   },
 
   runtimeConfig: {
