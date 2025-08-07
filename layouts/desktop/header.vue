@@ -1,8 +1,8 @@
 <template>
-  <header :class="{ top: isTop }">
+  <header :class="{ top: isTop }" class="bg-header">
     <div class="h-full flex items-center justify-between layout-main">
-      <span class="text-[--text-color-primary] hover:text-[--text-color-brand]">GjolDB</span>
-      <button class="cursor-pointer text-font-primary" :class="isDark ? 'i-carbon-moon' : 'i-carbon-sun'" @click="changeColorMode" />
+      <span class="text-primary hover:text-brand">GjolDB</span>
+      <button class="cursor-pointer text-primary" :class="isDark ? 'i-carbon-moon' : 'i-carbon-sun'" @click="changeColorMode" />
     </div>
   </header>
 </template>
@@ -25,9 +25,9 @@ const isTop = computed<boolean>(() => {
 
 <style scoped>
 header {
-  @apply h-[--height-header] backdrop-blur-8 z-50 bg-header-primary sticky top-0;
+  @apply h-[56px] z-50 sticky top-0;
 }
 .top {
-  box-shadow: inset 0 -1px 0 var(--bg-color-borer);
+  @apply border-b border-base;
 }
 </style>
