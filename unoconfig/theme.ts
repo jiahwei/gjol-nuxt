@@ -1,9 +1,26 @@
-import type { UserConfig } from 'unocss'
+//@unocss-include
+import type { PresetUnoTheme } from 'unocss'
 
-type themeType = UserConfig['theme']
-
-const theme: themeType = {
+export const theme: Partial<PresetUnoTheme>  = {
+  spacing: {
+    'space-xs': '4px',
+    'space-sm': '8px',
+    'space-md': '12px',
+    'space-lg': '16px',
+    'space-xl': '24px',
+    'space-2xl': '32px',
+  },
   colors: {
+    // 灰色
+    'gray-1': '#F8F9FA',
+    'gray-2': '#E9ECEF',
+    'gray-3': '#DEE2E6',
+    'gray-4': '#CED4DA',
+    'gray-5': '#ADB5BD',
+    'gray-6': '#6C757D',
+    'gray-7': '#495057',
+    'gray-8': '#343A40',
+    'gray-9': '#212529',
     // 亮色模式颜色
     'light-bg': '#fff',
     'light-bg-secondary': '#f5f5f5',
@@ -39,4 +56,3 @@ const theme: themeType = {
     'dark-brand-active': '#6bb2ff',
   },
 }
-export default theme
