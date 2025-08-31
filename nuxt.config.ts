@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@nuxtjs/color-mode',
-    'nuxt-icon',
+    // 'nuxt-icon',
     '@formkit/auto-animate',
     '@nuxt/eslint',
     '@nuxt/image',

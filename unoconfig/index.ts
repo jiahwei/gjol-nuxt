@@ -1,4 +1,5 @@
-import theme from './theme'
-import shortcuts from './shortcuts'
+import { theme } from './theme'
+import { shortcuts } from './shortcuts'
+import { rules } from './rules'
 
-export { theme, shortcuts }
+export { theme, shortcuts ,rules }

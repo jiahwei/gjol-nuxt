@@ -38,7 +38,7 @@
     "eslint-plugin-prettier": "^5.4.0",
     "eslint-plugin-vue": "^10.1.0",
     "less": "^4.3.0",
-    "nuxt": "^3.17.4",
+    "nuxt": "^4.0.3",
     "nuxt-icon": "^0.6.10",
     "prettier": "^3.5.3",
     "stylelint": "^16.19.1",
