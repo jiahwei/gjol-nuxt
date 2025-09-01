@@ -1,3 +1,4 @@
+//@unocss-include
 import type { Rule } from 'unocss'
 import { theme } from '../index'
 

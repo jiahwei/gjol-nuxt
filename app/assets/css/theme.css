@@ -1,19 +1,5 @@
 :root {
   --height-header: 56px;
-  --gray-color-1: rgb(243, 243, 243);
-  --gray-color-2: #eee;
-  --gray-color-3: #e7e7e7;
-  --gray-color-4: #dcdcdc;
-  --gray-color-5: #c5c5c5;
-  --gray-color-6: #a6a6a6;
-  --gray-color-7: #8b8b8b;
-  --gray-color-8: #777;
-  --gray-color-9: #5e5e5e;
-  --gray-color-10: #4b4b4b;
-  --gray-color-11: #383838;
-  --gray-color-12: #2c2c2c;
-  --gray-color-13: #242424;
-  --gray-color-14: #181818;
   background-color: var(--bg-color-page);
   transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

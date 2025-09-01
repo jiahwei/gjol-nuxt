@@ -1,7 +1,7 @@
 <template>
-  <header :class="{ top: isTop }" class="bg-header">
+  <header :class="{ top: isTop }" class="h-[var(--height-header)] z-50 sticky top-0">
     <div class="h-full flex items-center justify-between layout-main">
-      <span class="text-primary hover:text-brand">GjolDB</span>
+      <span class="text-primary">GjolDB</span>
       <button class="cursor-pointer text-primary" :class="isDark ? 'i-carbon-moon' : 'i-carbon-sun'" @click="changeColorMode" />
     </div>
   </header>
@@ -24,9 +24,6 @@ const isTop = computed<boolean>(() => {
 </script>
 
 <style scoped>
-header {
-  @apply h-[56px] z-50 sticky top-0;
-}
 .top {
   @apply border-b border-base;
 }

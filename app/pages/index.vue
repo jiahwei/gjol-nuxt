@@ -2,8 +2,6 @@
   <div id="app-home" class="text-primary font-12 transition-colors m-1">
     {{ newBulletinInfo }}
   </div>
-  <div class="i-carbon-moon m-space-lg">
-  </div>
 </template>
 
 <script lang="ts" setup>

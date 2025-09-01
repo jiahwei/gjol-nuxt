@@ -10,7 +10,7 @@
 
 <style scoped>
 footer{
-  @apply py-4 bg-footer-primary w-full;
+  @apply py-4 w-full;
   box-shadow: inset 0 1px 0 var(--bg-color-borer);
 }
 </style>
