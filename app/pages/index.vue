@@ -1,21 +1,12 @@
 <template>
-  <div id="app-home" class="text-primary font-12 transition-colors m-1">
-    {{ newBulletinInfo }}
+  <div class="flex flex-col  justify-center items-center">
+    <!-- <version /> -->
+     <box v-for="value in [1, 2, 3]" :key="value" id="box-{{ value }}" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { provide } from 'vue'
-import { bulletinApi } from '@/api/index'
-
-const { data: newBulletinInfo } = await bulletinApi.getNewBulletin()
-provide('newBulletinInfo', newBulletinInfo)
+import version from '~/components/index/version.vue';
+import box from '~/components/index/box.vue';
 </script>
 
-<style scoped>
-#app-home {
-  height: calc(100vh - var(--height-header));
-  background-color: var(--bg-color-page);
-  position: relative;
-}
-</style>

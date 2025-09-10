@@ -1,8 +1,14 @@
 <template>
-  <header :class="{ top: isTop }" class="h-[var(--height-header)] z-50 sticky top-0">
+  <header :class="{ 'border-b border-[var(--bg-color-borer)]': isTop }"
+    class="h-[var(--height-header)] bg-[var(--bg-color-page)] z-50 sticky top-0 switch-animation">
     <div class="h-full flex items-center justify-between layout-main">
-      <span class="text-primary">GjolDB</span>
-      <button class="cursor-pointer text-primary" :class="isDark ? 'i-carbon-moon' : 'i-carbon-sun'" @click="changeColorMode" />
+      <div class="flex items-center gap-1">
+        <div class="i-material-symbols:database" />
+        <span class="text-primary">GjolDB</span>
+      </div>
+
+      <button class="cursor-pointer text-primary" :class="isDark ? 'i-material-symbols:nightlight-outline' : 'i-material-symbols:sunny-outline'"
+        @click="changeColorMode" />
     </div>
   </header>
 </template>
@@ -22,9 +28,3 @@ const isTop = computed<boolean>(() => {
   return scrollY.value === 0
 })
 </script>
-
-<style scoped>
-.top {
-  @apply border-b border-base;
-}
-</style>

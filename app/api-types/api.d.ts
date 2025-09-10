@@ -322,6 +322,11 @@ export interface components {
             acronyms: string;
             /** List */
             list: components["schemas"]["BaseBulletinInfo"][];
+            /**
+             * Totalversionlen
+             * @default 0
+             */
+            totalVersionLen: number;
         };
         /**
          * ParagraphTopic

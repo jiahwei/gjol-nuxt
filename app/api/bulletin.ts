@@ -3,11 +3,12 @@ import type { components } from '@/api-types/api'
 
 const baseUrl = `/api`
 
-// 定义类型别名，使代码更简洁
-type BulletinInfo = components['schemas']['BulletinInfo']
-type BulletinDB = components['schemas']['BulletinDB']
-type ListInVersionReturn = components['schemas']['ListInVersionReturn']
-// type DatePayload = components['schemas']['DatePayload']
+type returnType = components['schemas']
+type BulletinInfo = returnType['BulletinInfo']
+type BulletinDB = returnType['BulletinDB']
+type ListInVersionReturn = returnType['ListInVersionReturn']
+type ListInVersionChildren = returnType['BaseBulletinInfo']
+// type DatePayload = returnType['DatePayload']
 
 export default {
   getNewBulletin: () => {
@@ -23,8 +24,4 @@ export default {
   },
 }
 
-export {
-  type BulletinInfo,
-  type BulletinDB,
-  type ListInVersionReturn,
-}
+export type { BulletinInfo, BulletinDB, ListInVersionReturn, ListInVersionChildren }

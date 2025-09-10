@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div class="h-screen relative">
     <app-header />
-    <main class="min-h-[calc(100vh-var(--header-height))] layout-main">
+    <main class="min-h-[calc(100vh-var(--height-header))] layout-main">
       <slot />
     </main>
     <app-footer />

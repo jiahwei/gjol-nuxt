@@ -4,7 +4,7 @@ export default defineEventHandler((event) => {
   if (!event.path.startsWith('/api/')) {
     return
   }
-
+  // console.log(useRuntimeConfig())
   const proxyUrl = useRuntimeConfig().apiBase as string
   const path = event.path.replace(/^\/api\//, '')
   const targetUrl = joinURL(proxyUrl, path)
