@@ -2,7 +2,6 @@
 export default defineNuxtConfig({
   modules: [
     '@nuxt/devtools',
-    '@nuxtjs/google-fonts',
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@nuxtjs/color-mode',

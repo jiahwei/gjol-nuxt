@@ -26,8 +26,15 @@ export default defineConfig({
     presetIcons(),
     presetTypography(),
     presetWebFonts({
+      provider: 'google',
       fonts: {
-        // ...
+        sans: 'Nunito',
+        nunito: [
+          {
+            name: 'Nunito',
+            weights: ['400', '700'], // 可选权重
+          },
+        ],
       },
     }),
   ],
