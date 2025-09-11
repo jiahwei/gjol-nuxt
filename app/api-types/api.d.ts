@@ -282,6 +282,8 @@ export interface components {
             name: string | null;
             /** Order */
             order: number;
+            /** Order By Date */
+            order_by_date: number;
             /** Contenttotalarr */
             contentTotalArr?: components["schemas"]["ContentTotal"][] | null;
             /** Versionid */
@@ -320,13 +322,13 @@ export interface components {
             id: number | null;
             /** Acronyms */
             acronyms: string;
-            /** List */
-            list: components["schemas"]["BaseBulletinInfo"][];
             /**
              * Totalversionlen
              * @default 0
              */
             totalVersionLen: number;
+            /** List */
+            list: components["schemas"]["BaseBulletinInfo"][];
         };
         /**
          * ParagraphTopic

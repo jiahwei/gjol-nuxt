@@ -1,7 +1,7 @@
 <template>
-  <div class="h-screen relative">
+  <div class="min-h-screen relative">
     <app-header />
-    <main class="min-h-[calc(100vh-var(--height-header))]  layout-main">
+    <main class="min-h-[calc(100vh-var(--height-header))] w-full">
       <slot />
     </main>
     <app-footer />
