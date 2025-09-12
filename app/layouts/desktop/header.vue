@@ -3,7 +3,7 @@
     class="h-[var(--height-header)] bg-[var(--bg-color-page)] z-50 sticky top-0 ">
     <div class="h-full flex items-center justify-between layout-other">
       <div class="flex items-center gap-space-sm">
-        <div class="text-[24px] i-material-symbols:database" />
+        <div class="text-[24px] i-material-symbols:database dark:text-white" />
         <span class="text-primary font-nunito leading-[20px]">GjoL DB</span>
       </div>
 

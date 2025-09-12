@@ -1,6 +1,7 @@
 <template>
   <div class="h-[calc(100vh-var(--height-header))] w-full flex flex-col justify-center">
-    <div class="layout-content flex flex-col md:flex-row justify-center items-center md:gap-space-xl">
+    <div
+    class="layout-content flex flex-col md:flex-row justify-center items-center md:gap-space-xl dark:text-white">
       <div v-if="isSuspended">
         <div class="status-word">坏了！古网没苟住 🥺</div>
         <div class="desc-word">
@@ -124,6 +125,6 @@ onBeforeUnmount(() => {
   @apply text-base mt-space-xl;
 }
 .desc-word-import {
-  @apply font-bold color-[var(--color-primary)];
+  @apply font-bold color-[var(--text-color-primary)];
 }
 </style>
