@@ -1,7 +1,6 @@
 <template>
   <div class="flex flex-col  justify-center items-center" ref="homeDom">
     <news id="news" class="bg-[var(--bg-color-page)]"/>
-    <news id="news2" class="bg-[var(--bg-color-secondarypage)]"/>
   </div>
 </template>
 
