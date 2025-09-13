@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
 import version from '~/components/index/version.vue';
-import news from '~/components/index/news.vue';
+import news from '~/components/index/newsBulletin.vue';
 import { useSectionVisibility } from '~/composables/home';
 
 
