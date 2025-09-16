@@ -33,10 +33,14 @@ import newsBulletinChart from '~/components/index/newsBulletinChart.vue'
 const { data: newsInfo } = await bulletinApi.getNewBulletin()
 provide('newsInfo', newsInfo)
 
+//#region 古网还在更新吗？
 
 const nowDate = useNow()
 const nowDatenowFormat = useDateFormat(nowDate, 'YYYY-MM-DD', { locales: 'zh-CN' })
+const emit = defineEmits(['updateIsSuspended'])
+
 const isSuspended:Ref<boolean> = ref(false)
+provide('isSuspended', isSuspended)
 const diffDays:Ref<number> = ref(0)
 
 function initSuspended(info:BulletinInfo) {
@@ -45,22 +49,14 @@ function initSuspended(info:BulletinInfo) {
   diffDays.value = Math.floor(diff / (1000 * 60 * 60 * 24))
   isSuspended.value = diff > 7 * 24 * 60 * 60 * 1000
 }
+
 watch(newsInfo, (info) => {
   if(!info) return
   initSuspended(info)
+  emit('updateIsSuspended', isSuspended.value)
 },{immediate:true})
+
+//#endregion
 
 
 </script>
-
-<style scoped>
-.status-word {
-  @apply text-4xl md:text-5xl font-bold;
-}
-.desc-word {
-  @apply text-base mt-space-xl;
-}
-.desc-word-import {
-  @apply font-bold color-[var(--text-color-primary)];
-}
-</style>

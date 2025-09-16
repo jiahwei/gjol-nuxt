@@ -13,6 +13,11 @@ const newsInfo = inject<Ref<BulletinInfo>>('newsInfo')!
 if (!newsInfo) {
   throw new Error('newsInfo is not provided');
 }
+const isSuspended = inject<Ref<boolean>>('isSuspended',ref(false))
+if (!isSuspended) {
+  throw new Error('isSuspended is not provided');
+}
+
 const { isVisible } = useUseComIsVisible('news')
 
 watch(isVisible, (visible) => {

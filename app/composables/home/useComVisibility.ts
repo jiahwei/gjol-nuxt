@@ -1,5 +1,10 @@
 import type { VisibilityMapTypeRef } from '~/types/home'
 
+/**
+ * 监听页面的子节点进入视口
+ * @param homeDom 页面dom
+ * @returns visibilityMap
+ */
 export function useSectionVisibility(homeDom: Ref<HTMLElement | null>) {
 
   const visibilityMap: VisibilityMapTypeRef = ref({})
@@ -27,7 +32,7 @@ export function useSectionVisibility(homeDom: Ref<HTMLElement | null>) {
     }
 
     const observer = new IntersectionObserver(callback, options)
-    
+
     ids.forEach((id) => {
       const el = document.getElementById(id)
       visibilityMap.value[id] = false
@@ -42,10 +47,10 @@ export function useSectionVisibility(homeDom: Ref<HTMLElement | null>) {
         if (entry.isIntersecting) {
           const id = entry.target.id
           visibilityMap.value[id] = true
-          console.log('进入视图', id)
+          // console.log('进入视图', id)
           observer.unobserve(entry.target)
         } else {
-          console.log('未进入视图', entry.target.id)
+          // console.log('未进入视图', entry.target.id)
         }
       })
     }
