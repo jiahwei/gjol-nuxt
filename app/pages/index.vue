@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-col  justify-center items-center" ref="homeDom">
     <newsBulletin id="news" class="bg-[var(--bg-color-page)]" @updateIsSuspended="setIsSuspended"/>
+    <version id="version" class="bg-[var(--bg-color-secondarypage)]"/>
   </div>
 </template>
 

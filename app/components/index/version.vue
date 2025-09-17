@@ -1,16 +1,19 @@
 <template>
-  <div ref="chartContainer" w-full h-600px>
+  <div class="h-screen w-full flex flex-col items-center justify-center">
+    <div class="text-3xl md:text-5xl font-bold  dark:text-white">既然如此，回头看看罢！</div>
+    <div ref="chartContainer" w-80vw h-600px>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { bulletinApi } from '@/api/index'
 import type { ListInVersionReturn as OriginalListInVersionReturn } from '@/api/bulletin'
+import { useChartsColorMode } from '~/composables'
 
 type ListInVersionReturn = OriginalListInVersionReturn & {
   children?: Array<OriginalListInVersionReturn>
 }
-
 import * as echarts from 'echarts/core';
 import { TreemapChart } from 'echarts/charts';
 import { TitleComponent } from 'echarts/components'
@@ -71,7 +74,7 @@ function transformToEChartsData(list: Array<ListInVersionReturn>) {
         ...base,
         children: getChildrenCount(item?.children ?? []),
       }
-    }else {
+    } else {
       return base
     }
   })
@@ -81,6 +84,20 @@ function transformToEChartsData(list: Array<ListInVersionReturn>) {
 
 const chartContainer = shallowRef<HTMLElement | null>(null);
 const chartInstance = shallowRef<echarts.ECharts | null>(null);
+const colorMode = useColorMode()
+
+const othercConfig = computed(() => ({
+  series: [
+    {
+      itemStyle: {
+        borderColor: colorMode.value === 'dark' ? '#171717' : '#f5f5f5',
+      }
+    }
+  ]
+}))
+
+useChartsColorMode(chartInstance, '#171717', '#f5f5f5', othercConfig)
+
 function initChart() {
   if (!chartContainer.value) return;
 
@@ -92,7 +109,7 @@ function initChart() {
         name: '版本信息',
         type: 'treemap',
         itemStyle: {
-          borderColor: '#fff',
+          borderColor: colorMode.value === 'dark' ? '#171717' : '#f5f5f5',
           borderWidth: 2,
           gapWidth: 2
         },
