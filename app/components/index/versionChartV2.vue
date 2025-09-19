@@ -31,6 +31,8 @@ function transformToEChartsSeries(list: Array<ListInVersionReturn>): { xAxisData
   let maxAxis = 0
 
   list.forEach(item => {
+    const date = new Date(item.date)
+    if(date.getFullYear() !== 2021) return
     const data = item.list?.map(child => child.totalLen) || []
     maxAxis = data.length > maxAxis ? data.length : maxAxis
     series.push({
@@ -41,7 +43,7 @@ function transformToEChartsSeries(list: Array<ListInVersionReturn>): { xAxisData
     })
   })
 
-  xAxisData = Array.from({ length: maxAxis }, (_, i) => `第${i + 1}个CD`)
+  xAxisData = Array.from({ length: maxAxis }, (_, i) => `第${i + 1}周`)
 
   return { xAxisData, series }
 }

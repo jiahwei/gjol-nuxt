@@ -32,7 +32,8 @@ function transformToEChartsData(list: Array<ListInVersionReturn>) {
     acronyms: '寰宇会',
     list: [],
     totalVersionLen: 0,
-    children: []
+    children: [],
+    date: '',
   }
 
   const normalVersionList: Array<ListInVersionReturn> = []

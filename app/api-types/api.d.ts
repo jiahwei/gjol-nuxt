@@ -316,12 +316,24 @@ export interface components {
             /** Detail */
             detail?: components["schemas"]["ValidationError"][];
         };
-        /** ListInVersionReturn */
+        /**
+         * ListInVersionReturn
+         * @description listInVersion 接口的返回参数
+         *
+         *     Args:
+         *         id (int | None): 版本ID
+         *         acronyms (str): 版本名称
+         *         date (str): 版本日期
+         *         total_version_len (int, optional): 版本总长度. Defaults to 0.
+         *         list (list[BaseBulletinInfo], optional): 公告列表. Defaults to [].
+         */
         ListInVersionReturn: {
             /** Id */
             id: number | null;
             /** Acronyms */
             acronyms: string;
+            /** Date */
+            date: string;
             /**
              * Totalversionlen
              * @default 0
@@ -543,8 +555,8 @@ export interface operations {
     };
     fix_all_bulletin_dev_fixAllBulletin_get: {
         parameters: {
-            query: {
-                pageNumint: number;
+            query?: {
+                pageNum?: number;
             };
             header?: never;
             path?: never;
