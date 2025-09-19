@@ -34,14 +34,21 @@ const resolveListInfo = computed(() => {
 const chartContainer = shallowRef<HTMLElement | null>(null);
 const chartInstance = shallowRef<echarts.ECharts | null>(null);
 
-useChartsColorMode(chartInstance, '#171717', '#f5f5f5')
+const colorMode = useColorMode()
+const othercConfig = computed(() => ({
+
+  tooltip:{
+    extraCssText: colorMode.value === 'dark' ? 'background-color: #1e2939;': 'background-color: #fff;'
+  }
+}))
+useChartsColorMode(chartInstance, '#171717', '#f5f5f5', othercConfig)
 
 function tooltipFormatter(params: any) {
   const sourceItem = params[0].data as ListInVersionReturn
   return`
-  <div class="p-space-sm bg-white dark:bg-gray-800 flex flex-col gap-space-md">
-    <span class="color-[var(--text-color-primary)] font-bold">${sourceItem.acronyms}</span>
-    <span class="font-medium">开始于${sourceItem.date}，全部公告共有${sourceItem.totalVersionLen}字</span>
+  <div class="p-0 bg-white dark:bg-gray-800 flex flex-col gap-space-md max-w-[200px]">
+    <span class="color-[var(--text-color-primary)] font-bold break-words">${sourceItem.acronyms}</span>
+    <span class="font-medium break-words whitespace-normal">开始于${sourceItem.date}，全部公告共有${sourceItem.totalVersionLen}字</span>
   </div>
   `
 }
@@ -52,12 +59,6 @@ function initChart() {
   chartInstance.value = echarts.init(chartContainer.value);
 
   const option: EChartsOption = {
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
-    },
     dataset: {
       source: resolveListInfo.value,
       dimensions: ['date', 'totalVersionLen'],
@@ -70,7 +71,8 @@ function initChart() {
     },
     tooltip: {
       trigger: 'axis',
-      formatter: tooltipFormatter
+      formatter: tooltipFormatter,
+      confine: true,
     },
     series: [{
       type: 'line',
