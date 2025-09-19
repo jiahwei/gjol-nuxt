@@ -6,6 +6,7 @@
 </template>
 
 <script lang="ts" setup>
+import { bulletinApi } from '@/api/index'
 import version from '~/components/index/version.vue';
 import newsBulletin from '~/components/index/newsBulletin.vue';
 import { useSectionVisibility } from '~/composables/home';
@@ -21,5 +22,8 @@ function setIsSuspended(value: boolean) {
   isGjolSuspended.value = value
 }
 provide('isGjolSuspended', isGjolSuspended)
+
+const { data: listInfo } = await bulletinApi.getListInVersion()
+provide('listInfo', listInfo)
 
 </script>

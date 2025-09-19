@@ -1,77 +1,56 @@
 <template>
-  <div ref="chartContainer" w-80vw h-600px>
+  <div ref="chartContainer" w-90vw md:w-80vw h-600px>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { ListInVersionReturn as OriginalListInVersionReturn } from '@/api/bulletin'
+import type { ListInVersionReturn } from '@/api/bulletin'
 import { useChartsColorMode } from '~/composables'
 
 import * as echarts from 'echarts/core';
 import { LineChart } from 'echarts/charts';
-import { TitleComponent, GridComponent, TooltipComponent, LegendComponent } from 'echarts/components'
+import { TitleComponent, GridComponent, TooltipComponent, LegendComponent, DatasetComponent } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers';
 import type { LineSeriesOption } from 'echarts/charts';
 
 type EChartsOption = echarts.ComposeOption<LineSeriesOption>;
-type ListInVersionReturn = OriginalListInVersionReturn & {
-  children?: Array<OriginalListInVersionReturn>
-}
-echarts.use([LineChart, TitleComponent, GridComponent, TooltipComponent, LegendComponent, CanvasRenderer]);
+echarts.use([LineChart, TitleComponent, GridComponent, TooltipComponent, LegendComponent, DatasetComponent, CanvasRenderer]);
 
 
 //#region 数据处理
 
-const listInfo = inject('listInfo', ref([]))
+const listInfo = inject<Ref<Array<ListInVersionReturn>>>('listInfo', ref([]))
 
-function transformToEChartsSeries(list: Array<ListInVersionReturn>): { xAxisData: string[], series: LineSeriesOption[] } {
-  if (!Array.isArray(list) || list.length === 0) return { xAxisData: [], series: [] }
-  let xAxisData: string[] = []
-  let series: LineSeriesOption[] = []
-  let maxAxis = 0
-
-  list.forEach(item => {
-    const date = new Date(item.date)
-    if(date.getFullYear() !== 2021) return
-    const data = item.list?.map(child => child.totalLen) || []
-    maxAxis = data.length > maxAxis ? data.length : maxAxis
-    series.push({
-      name: item.acronyms,
-      type: 'line',
-      stack: 'Total',
-      data,
-    })
-  })
-
-  xAxisData = Array.from({ length: maxAxis }, (_, i) => `第${i + 1}周`)
-
-  return { xAxisData, series }
-}
+const resolveListInfo = computed(() => {
+  return [...(listInfo.value || [])].sort((a, b) => {
+    const dateA = new Date(a.date).getTime()
+    const dateB = new Date(b.date).getTime()
+    return dateA - dateB
+  }).slice(2)
+})
 
 //#endregion
 
 const chartContainer = shallowRef<HTMLElement | null>(null);
 const chartInstance = shallowRef<echarts.ECharts | null>(null);
-const colorMode = useColorMode()
 
-const othercConfig = computed(() => ({
-  series: [
-    {
-      lineStyle: {
-        color: colorMode.value === 'dark' ? '#171717' : '#f5f5f5',
-      }
-    }
-  ]
-}))
+useChartsColorMode(chartInstance, '#171717', '#f5f5f5')
 
-useChartsColorMode(chartInstance, '#171717', '#f5f5f5', othercConfig)
+function tooltipFormatter(params: any) {
+  const sourceItem = params[0].data as ListInVersionReturn
+  return`
+  <div class="p-space-sm bg-white dark:bg-gray-800 flex flex-col gap-space-md">
+    <span class="color-[var(--text-color-primary)] font-bold">${sourceItem.acronyms}</span>
+    <span class="font-medium">开始于${sourceItem.date}，全部公告共有${sourceItem.totalVersionLen}字</span>
+  </div>
+  `
+}
 
 function initChart() {
   if (!chartContainer.value) return;
 
   chartInstance.value = echarts.init(chartContainer.value);
 
-  const { xAxisData, series } = transformToEChartsSeries(listInfo.value || [])
   const option: EChartsOption = {
     grid: {
       left: '3%',
@@ -79,17 +58,24 @@ function initChart() {
       bottom: '3%',
       containLabel: true
     },
+    dataset: {
+      source: resolveListInfo.value,
+      dimensions: ['date', 'totalVersionLen'],
+    },
     xAxis: {
       type: 'category',
-      data: xAxisData
     },
     yAxis: {
       type: 'value'
     },
     tooltip: {
-      trigger: 'axis'
+      trigger: 'axis',
+      formatter: tooltipFormatter
     },
-    series: series,
+    series: [{
+      type: 'line',
+      smooth: true,
+    }],
   }
   chartInstance.value.setOption(option);
 

@@ -1,9 +1,9 @@
 <template>
   <div class="h-[calc(100vh-var(--height-header))] w-full flex flex-col justify-center">
     <div
-    class="layout-content flex flex-col md:flex-row justify-center items-center md:gap-space-xl dark:text-white">
+    class="layout-content flex flex-col md:flex-row justify-center items-center gap-space-xl  md: gap-space-2xl dark:text-white">
       <div v-if="isSuspended">
-        <div class="status-word">坏了！古网没苟住 🥺</div>
+        <div class="status-word">坏了！古网没苟住</div>
         <div class="desc-word">
           最近一次更新
           <span class="desc-word-import">{{ diffDays }}</span>
@@ -19,7 +19,8 @@
           周
         </div>
       </div>
-      <newsBulletinChart />
+      <img v-if="isSuspended" src="/img/hai.png" alt="但愿如此" class="w-[100px] h-[100px] rounded-sm"/>
+      <newsBulletinChart v-else/>
     </div>
   </div>
 </template>
