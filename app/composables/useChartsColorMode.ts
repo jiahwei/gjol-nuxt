@@ -4,7 +4,8 @@ export function useChartsColorMode(
   chartInstance: Ref<ECharts | null>,
   darkColor: string = '#242424',
   lightColor: string = '#fff',
-  config: Ref<EChartsCoreOption> = ref({})) {
+  config: Ref<EChartsCoreOption> = ref({}),
+) {
   const colorMode = useColorMode()
   watch(colorMode, () => {
     if (chartInstance.value && colorMode.value) {
@@ -16,7 +17,14 @@ export function useChartsColorMode(
       chartInstance.value.setOption(option)
     }
   })
+
+  function setOtherConfig() {
+    if (chartInstance.value) {
+      chartInstance.value.setOption(config.value)
+    }
+  }
   return {
-    colorMode
+    colorMode,
+    setOtherConfig
   }
 }

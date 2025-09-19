@@ -37,15 +37,15 @@ const chartInstance = shallowRef<echarts.ECharts | null>(null);
 const colorMode = useColorMode()
 const othercConfig = computed(() => ({
 
-  tooltip:{
-    extraCssText: colorMode.value === 'dark' ? 'background-color: #1e2939;': 'background-color: #fff;'
+  tooltip: {
+    extraCssText: colorMode.value === 'dark' ? 'background-color: #1e2939;' : 'background-color: #fff;'
   }
 }))
-useChartsColorMode(chartInstance, '#171717', '#f5f5f5', othercConfig)
+const { setOtherConfig } = useChartsColorMode(chartInstance, '#171717', '#f5f5f5', othercConfig)
 
 function tooltipFormatter(params: any) {
   const sourceItem = params[0].data as ListInVersionReturn
-  return`
+  return `
   <div class="p-0 bg-white dark:bg-gray-800 flex flex-col gap-space-md max-w-[200px]">
     <span class="color-[var(--text-color-primary)] font-bold break-words">${sourceItem.acronyms}</span>
     <span class="font-medium break-words whitespace-normal">开始于${sourceItem.date}，全部公告共有${sourceItem.totalVersionLen}字</span>
@@ -80,7 +80,7 @@ function initChart() {
     }],
   }
   chartInstance.value.setOption(option);
-
+  setOtherConfig()
 }
 
 onMounted(() => {
