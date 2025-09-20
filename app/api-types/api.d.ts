@@ -332,8 +332,10 @@ export interface components {
             id: number | null;
             /** Acronyms */
             acronyms: string;
-            /** Date */
-            date: string;
+            /** Start */
+            start: string;
+            /** End */
+            end: string;
             /**
              * Totalversionlen
              * @default 0

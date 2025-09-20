@@ -33,7 +33,8 @@ function transformToEChartsData(list: Array<ListInVersionReturn>) {
     list: [],
     totalVersionLen: 0,
     children: [],
-    date: '',
+    start: '',
+    end: '',
   }
 
   const normalVersionList: Array<ListInVersionReturn> = []
