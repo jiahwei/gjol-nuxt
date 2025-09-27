@@ -7,7 +7,7 @@
 
 <script lang="ts" setup>
 import type { ListInVersionReturn } from '@/api/bulletin'
-import { useChartsColorMode } from '~/composables'
+import { useChartsColorMode,useChartsAutoSize } from '~/composables'
 import { useMediaQuery } from '@vueuse/core'
 
 import * as echarts from 'echarts/core';
@@ -70,6 +70,7 @@ const othercConfig = computed(() => ({
   }
 }))
 const { setOtherConfig } = useChartsColorMode(chartInstance, '#171717', '#f5f5f5', othercConfig)
+useChartsAutoSize(chartInstance)
 
 function tooltipFormatter(params: any) {
   const sourceItem = params[0].data as resolveList

@@ -16,7 +16,6 @@ export function useSectionVisibility(homeDom: Ref<HTMLElement | null>) {
     ids = Array.from(children)
       .map((item) => item.id)
       .filter((id) => id)
-    console.log('ids', ids)
     ids.forEach((id) => {
       visibilityMap.value[id] = false
     })
