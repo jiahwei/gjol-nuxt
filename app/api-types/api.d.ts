@@ -205,24 +205,6 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        /** BaseBulletinInfo */
-        BaseBulletinInfo: {
-            /**
-             * Date
-             * @default
-             */
-            date: string;
-            /**
-             * Orderid
-             * @default 0
-             */
-            orderId: number;
-            /**
-             * Totallen
-             * @default 0
-             */
-            totalLen: number;
-        };
         /**
          * BulletinDB
          * @description 公告数据库模型
@@ -259,7 +241,39 @@ export interface components {
              */
             type: string;
         };
-        /** BulletinInfo */
+        /**
+         * BulletinInVersion
+         * @description 接口“bulletins/listInVersion”的返回参数中公告的类型
+         *
+         *     Args:
+         *         BaseBulletinInfo (_type_): _description_
+         */
+        BulletinInVersion: {
+            /**
+             * Date
+             * @default
+             */
+            date: string;
+            /**
+             * Orderid
+             * @default 0
+             */
+            orderId: number;
+            /**
+             * Totallen
+             * @default 0
+             */
+            totalLen: number;
+            /** Type */
+            type: string;
+        };
+        /**
+         * BulletinInfo
+         * @description 接口“bulletins/byDate”的返回参数
+         *
+         *     Args:
+         *         BaseBulletinInfo (_type_): _description_
+         */
         BulletinInfo: {
             /**
              * Date
@@ -296,7 +310,13 @@ export interface components {
              */
             type: string;
         };
-        /** ContentTotal */
+        /**
+         * ContentTotal
+         * @description 接口“bulletins/byDate”的返回参数中content_total_arr的类型
+         *
+         *     Args:
+         *         BaseModel (_type_): _description_
+         */
         ContentTotal: {
             type: components["schemas"]["ParagraphTopic"];
             /** Leng */
@@ -304,7 +324,13 @@ export interface components {
             /** Content */
             content: string[];
         };
-        /** DatePayload */
+        /**
+         * DatePayload
+         * @description 接口“bulletins/byDate”的入参类型
+         *
+         *     Args:
+         *         BaseModel (_type_): _description_
+         */
         DatePayload: {
             /** Startdate */
             startDate?: string | null;
@@ -318,7 +344,7 @@ export interface components {
         };
         /**
          * ListInVersionReturn
-         * @description listInVersion 接口的返回参数
+         * @description 接口“bulletins/listInVersion”的返回参数
          *
          *     Args:
          *         id (int | None): 版本ID
@@ -342,10 +368,14 @@ export interface components {
              */
             totalVersionLen: number;
             /** List */
-            list: components["schemas"]["BaseBulletinInfo"][];
+            list: components["schemas"]["BulletinInVersion"][];
         };
         /**
          * ParagraphTopic
+         * @description 公告段落的分类标准
+         *
+         *     Args:
+         *         Enum (_type_): _description_
          * @enum {string}
          */
         ParagraphTopic: "开头" | "署名/结尾" | "无更新" | "商城/外观" | "通用调整" | "职业调整" | "斗法调整" | "秘境调整" | "活动更新";

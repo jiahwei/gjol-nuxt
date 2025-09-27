@@ -7,7 +7,8 @@ type returnType = components['schemas']
 type BulletinInfo = returnType['BulletinInfo']
 type BulletinDB = returnType['BulletinDB']
 type ListInVersionReturn = returnType['ListInVersionReturn']
-type ListInVersionChildren = returnType['BaseBulletinInfo']
+type ListInVersionChildren = returnType['BulletinInVersion']
+type ContentTotal = returnType['ContentTotal']
 // type DatePayload = returnType['DatePayload']
 
 export default {
@@ -24,4 +25,10 @@ export default {
   },
 }
 
-export type { BulletinInfo, BulletinDB, ListInVersionReturn, ListInVersionChildren }
+export type {
+  BulletinInfo,
+  BulletinDB,
+  ListInVersionReturn,
+  ListInVersionChildren,
+  ContentTotal
+}

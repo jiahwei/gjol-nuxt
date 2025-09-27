@@ -2,6 +2,7 @@
   <div class="flex flex-col  justify-center items-center" ref="homeDom">
     <newsBulletin id="news" class="bg-[var(--bg-color-page)]" @updateIsSuspended="setIsSuspended"/>
     <version id="version" class="bg-[var(--bg-color-secondarypage)]"/>
+    <topic id="topic" class="bg-[var(--bg-color-page)]"/>
   </div>
 </template>
 
@@ -9,6 +10,7 @@
 import { bulletinApi } from '@/api/index'
 import version from '~/components/index/version.vue';
 import newsBulletin from '~/components/index/newsBulletin.vue';
+import topic from '~/components/index/topic.vue';
 import { useSectionVisibility } from '~/composables/home';
 
 
@@ -24,6 +26,13 @@ function setIsSuspended(value: boolean) {
 provide('isGjolSuspended', isGjolSuspended)
 
 const { data: listInfo } = await bulletinApi.getListInVersion()
-provide('listInfo', listInfo)
+const sortListInfo = computed(() => {
+  return [...(listInfo.value || [])].sort((a, b) => {
+    const dateA = new Date(a.start || a.end).getTime()
+    const dateB = new Date(b.start || b.end).getTime()
+    return dateA - dateB
+  }).slice(2)
+})
+provide('listInfo', sortListInfo)
 
 </script>

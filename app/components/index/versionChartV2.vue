@@ -1,50 +1,48 @@
 <template>
-  <div>
-    <div ref="chartContainer" w-90vw md:w-80vw h-600px>
-    </div>
+  <div ref="chartContainer" w-90vw md:w-80vw h-600px>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { ListInVersionReturn } from '@/api/bulletin'
-import { useChartsColorMode,useChartsAutoSize } from '~/composables'
-import { useMediaQuery } from '@vueuse/core'
-
+//#region import
+// echarts
 import * as echarts from 'echarts/core';
 import { LineChart } from 'echarts/charts';
 import { TitleComponent, GridComponent, TooltipComponent, LegendComponent, DatasetComponent } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers';
 import type { LineSeriesOption } from 'echarts/charts';
 
-type EChartsOption = echarts.ComposeOption<LineSeriesOption>;
-echarts.use([LineChart, TitleComponent, GridComponent, TooltipComponent, LegendComponent, DatasetComponent, CanvasRenderer]);
+import { useMediaQuery } from '@vueuse/core'
+
+// 本地
+import type { ListInVersionReturn } from '@/api/bulletin'
+import { useChartsColorMode, useChartsAutoSize } from '~/composables'
+//#endregion
 
 
 //#region 数据处理
 
 const listInfo = inject<Ref<Array<ListInVersionReturn>>>('listInfo', ref([]))
 interface resolveList {
+  // 版本别称
   acronyms: string;
   startDate: string;
   endDate: string;
+  // 版本长度占比
   val: number;
+  // 版本总长度
   totalVersionLen: number;
+  // 公告数量
   bulletins: number
 }
-const resolveListInfo = computed(() => {
-  const list = [...(listInfo.value || [])].sort((a, b) => {
-    const dateA = new Date(a.start || a.end).getTime()
-    const dateB = new Date(b.start || b.end).getTime()
-    return dateA - dateB
-  }).slice(2)
-
+const resolveListInfo = computed<resolveList[]>(() => {
   let maxLen = 0
-  list.forEach(item => {
+  listInfo.value.forEach(item => {
     maxLen = Math.max(maxLen, item.totalVersionLen)
   })
 
   const result: resolveList[] = []
-  list.forEach(item => {
+  listInfo.value.forEach(item => {
     result.push({
       acronyms: item.acronyms,
       startDate: item.start,
@@ -59,6 +57,8 @@ const resolveListInfo = computed(() => {
 
 //#endregion
 
+type EChartsOption = echarts.ComposeOption<LineSeriesOption>;
+echarts.use([LineChart, TitleComponent, GridComponent, TooltipComponent, LegendComponent, DatasetComponent, CanvasRenderer]);
 const chartContainer = shallowRef<HTMLElement | null>(null);
 const chartInstance = shallowRef<echarts.ECharts | null>(null);
 
