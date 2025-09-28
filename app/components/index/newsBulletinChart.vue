@@ -5,7 +5,7 @@
 
 <script lang="ts" setup>
 import type { BulletinInfo } from '@/api/bulletin'
-import { useUseComIsVisible } from '~/composables/home'
+import { useComIsVisible } from '~/composables/home'
 import { useChartsColorMode } from '~/composables'
 
 
@@ -18,7 +18,7 @@ if (!isSuspended) {
   throw new Error('isSuspended is not provided');
 }
 
-const { isVisible } = useUseComIsVisible('news')
+const { isVisible } = useComIsVisible('news')
 
 watch(isVisible, (visible) => {
   if (visible) {

@@ -156,6 +156,9 @@ function initChart() {
       max: 100,
       axisLabel: {
         formatter: '{value}%'  // 添加百分号显示
+      },
+      axisLine: {
+        show: true,
       }
     },
     series: [

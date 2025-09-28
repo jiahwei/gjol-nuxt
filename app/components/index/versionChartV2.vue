@@ -8,7 +8,7 @@
 // echarts
 import * as echarts from 'echarts/core';
 import { LineChart } from 'echarts/charts';
-import { TitleComponent, GridComponent, TooltipComponent, LegendComponent, DatasetComponent } from 'echarts/components'
+import { TitleComponent, GridComponent, TooltipComponent, LegendComponent, DatasetComponent, DataZoomComponent } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers';
 import type { LineSeriesOption } from 'echarts/charts';
 
@@ -17,6 +17,7 @@ import { useMediaQuery } from '@vueuse/core'
 // 本地
 import type { ListInVersionReturn } from '@/api/bulletin'
 import { useChartsColorMode, useChartsAutoSize } from '~/composables'
+import { useComIsVisible } from '~/composables/home'
 //#endregion
 
 
@@ -58,7 +59,7 @@ const resolveListInfo = computed<resolveList[]>(() => {
 //#endregion
 
 type EChartsOption = echarts.ComposeOption<LineSeriesOption>;
-echarts.use([LineChart, TitleComponent, GridComponent, TooltipComponent, LegendComponent, DatasetComponent, CanvasRenderer]);
+echarts.use([LineChart, TitleComponent, GridComponent, TooltipComponent, LegendComponent, DatasetComponent, DataZoomComponent, CanvasRenderer]);
 const chartContainer = shallowRef<HTMLElement | null>(null);
 const chartInstance = shallowRef<echarts.ECharts | null>(null);
 
@@ -89,6 +90,7 @@ function initChart() {
   chartInstance.value = echarts.init(chartContainer.value);
 
   const option: EChartsOption = {
+    animationDuration: 1000,
     dataset: {
       source: resolveListInfo.value,
       dimensions: ['startDate', 'val'],
@@ -104,6 +106,9 @@ function initChart() {
       type: 'value',
       axisLabel: {
         formatter: '{value}%'
+      },
+      axisLine: {
+        show: true,
       }
     },
     tooltip: {
@@ -115,14 +120,23 @@ function initChart() {
       type: 'line',
       smooth: true,
     }],
+    // dataZoom: [{
+    //   type: "inside",
+    //   start: 0,
+    //   end: useMediaQuery('(min-width: 768px)').value ? 100 : 50,
+    // }],
   }
   chartInstance.value.setOption(option);
   setOtherConfig()
 }
 
-onMounted(() => {
-  initChart();
-});
+const { isVisible } = useComIsVisible('version')
+
+watch(isVisible, (visible) => {
+  if (visible) {
+    initChart()
+  }
+})
 
 onBeforeUnmount(() => {
   if (chartInstance.value) {
