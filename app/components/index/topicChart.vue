@@ -55,21 +55,13 @@ const EffectiveParagraphTopicArray: EffectiveParagraphTopic[] = [
 function getPercentage(value: number, total: number): number {
   if (!isFinite(value) || !isFinite(total) || total === 0) return 0;
   const percent = (value / total) * 100;
-  return parseFloat(percent.toFixed(2));
+  return parseFloat(percent.toFixed(1));
 }
 
 
 function getTopicCount(bulletinsList: ListInVersionReturn['list']): TopicCount {
-  const filteredTopics: EffectiveParagraphTopic[] = [
-    "商城",
-    // "通用调整",
-    "职业调整",
-    "PVP",
-    "PVE",
-    "PVX"
-  ];
   function isFilteredTopic(value: string): value is EffectiveParagraphTopic {
-    return filteredTopics.includes(value as EffectiveParagraphTopic);
+    return EffectiveParagraphTopicArray.includes(value as EffectiveParagraphTopic);
   }
   const topicCount: TopicCount = {
     "商城": 0,
@@ -137,6 +129,13 @@ function getSeriesData() {
       type: 'bar',
       stack: 'total',
       name: topic,
+      label: {
+        show: true,
+        formatter: (params: any) => {
+          const num = params.value?.[topic] || 0
+          return num === 0 ? '' : `${num}%`
+        }
+      },
     })
   })
   return seriesData
@@ -168,7 +167,7 @@ function initChart() {
       type: 'value',
       max: 100,
       axisLabel: {
-        formatter: '{value}%'  // 添加百分号显示
+        formatter: '{value}%'
       },
       axisLine: {
         show: true,
@@ -176,8 +175,6 @@ function initChart() {
     },
     series: getSeriesData(),
   };
-
-  console.log(option)
 
   chartInstance.value.setOption(option);
 }
