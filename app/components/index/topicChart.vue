@@ -27,7 +27,7 @@ import { useChartsColorMode, useChartsAutoSize } from '~/composables'
 //#region 数据处理
 const listInfo = inject<Ref<Array<ListInVersionReturn>>>('listInfo', ref([]))
 type ParagraphTopic = ContentTotal['type']
-type EffectiveParagraphTopic = Exclude<ParagraphTopic, "开头" | "署名/结尾">
+type EffectiveParagraphTopic = Exclude<ParagraphTopic, "格式" | "无更新" | "通用调整">
 type TopicCount = {
   [K in EffectiveParagraphTopic]: number;
 }
@@ -43,13 +43,12 @@ interface resolveList extends TopicCount {
 }
 
 const EffectiveParagraphTopicArray: EffectiveParagraphTopic[] = [
-  "无更新",
-  "商城/外观",
-  "通用调整",
+  "商城",
+  // "通用调整",
   "职业调整",
-  "斗法调整",
-  "秘境调整",
-  "活动更新"
+  "PVP",
+  "PVE",
+  "PVX"
 ]
 
 
@@ -62,25 +61,23 @@ function getPercentage(value: number, total: number): number {
 
 function getTopicCount(bulletinsList: ListInVersionReturn['list']): TopicCount {
   const filteredTopics: EffectiveParagraphTopic[] = [
-    "无更新",
-    "商城/外观",
-    "通用调整",
+    "商城",
+    // "通用调整",
     "职业调整",
-    "斗法调整",
-    "秘境调整",
-    "活动更新"
+    "PVP",
+    "PVE",
+    "PVX"
   ];
   function isFilteredTopic(value: string): value is EffectiveParagraphTopic {
     return filteredTopics.includes(value as EffectiveParagraphTopic);
   }
   const topicCount: TopicCount = {
-    "无更新": 0,
-    "商城/外观": 0,
-    "通用调整": 0,
+    "商城": 0,
+    // "通用调整": 0,
     "职业调整": 0,
-    "斗法调整": 0,
-    "秘境调整": 0,
-    "活动更新": 0,
+    "PVP": 0,
+    "PVE": 0,
+    "PVX": 0,
   }
 
   let total = 0
@@ -133,6 +130,18 @@ const chartInstance = shallowRef<echarts.ECharts | null>(null);
 useChartsColorMode(chartInstance)
 useChartsAutoSize(chartInstance)
 
+function getSeriesData() {
+  const seriesData: BarSeriesOption[] = []
+  EffectiveParagraphTopicArray.forEach(topic => {
+    seriesData.push({
+      type: 'bar',
+      stack: 'total',
+      name: topic,
+    })
+  })
+  return seriesData
+}
+
 function initChart() {
   if (!chartContainer.value) return;
   chartInstance.value = echarts.init(chartContainer.value)
@@ -143,7 +152,11 @@ function initChart() {
       dimensions: ['acronyms', ...EffectiveParagraphTopicArray],
     },
     legend: {
-      selectedMode: false
+      selectedMode: 'multiple',
+      type: 'scroll',
+      orient: 'horizontal',
+      left: 'center',
+      top: 'bottom',
     },
     xAxis: {
       type: 'category',
@@ -161,16 +174,10 @@ function initChart() {
         show: true,
       }
     },
-    series: [
-      { type: 'bar', stack: 'total', name: '无更新' },
-      { type: 'bar', stack: 'total', name: '商城/外观' },
-      { type: 'bar', stack: 'total', name: '通用调整' },
-      { type: 'bar', stack: 'total', name: '职业调整' },
-      { type: 'bar', stack: 'total', name: '斗法调整' },
-      { type: 'bar', stack: 'total', name: '秘境调整' },
-      { type: 'bar', stack: 'total', name: '活动更新' },
-    ],
+    series: getSeriesData(),
   };
+
+  console.log(option)
 
   chartInstance.value.setOption(option);
 }

@@ -378,7 +378,7 @@ export interface components {
          *         Enum (_type_): _description_
          * @enum {string}
          */
-        ParagraphTopic: "开头" | "署名/结尾" | "无更新" | "商城/外观" | "通用调整" | "职业调整" | "斗法调整" | "秘境调整" | "活动更新";
+        ParagraphTopic: "格式" | "无更新" | "商城" | "职业调整" | "通用调整" | "PVP" | "PVE" | "PVX";
         /** ValidationError */
         ValidationError: {
             /** Location */
