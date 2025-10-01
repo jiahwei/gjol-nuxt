@@ -86,6 +86,7 @@ function tooltipFormatter(params: any) {
 
 function initChart() {
   if (!chartContainer.value) return;
+  const isMobile = useMediaQuery('(max-width: 768px)').value
 
   chartInstance.value = echarts.init(chartContainer.value);
 
@@ -98,8 +99,8 @@ function initChart() {
     xAxis: {
       type: 'category',
       axisLabel: {
-        rotate: useMediaQuery('(min-width: 768px)').value ? 0 : 45,
-        interval: useMediaQuery('(min-width: 768px)').value ? 2 : 'auto'
+        rotate: isMobile ? 45 : 0,
+        interval: isMobile ? 'auto' : 2
       }
     },
     yAxis: {

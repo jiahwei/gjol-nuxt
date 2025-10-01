@@ -13,7 +13,7 @@ const newsInfo = inject<Ref<BulletinInfo>>('newsInfo')!
 if (!newsInfo) {
   throw new Error('newsInfo is not provided');
 }
-const isSuspended = inject<Ref<boolean>>('isSuspended',ref(false))
+const isSuspended = inject<Ref<boolean>>('isSuspended', ref(false))
 if (!isSuspended) {
   throw new Error('isSuspended is not provided');
 }
@@ -29,11 +29,12 @@ watch(isVisible, (visible) => {
 //#region 图表
 import * as echarts from 'echarts/core';
 import { PieChart } from 'echarts/charts';
+import { TooltipComponent, LegendComponent } from 'echarts/components';
 import type { PieSeriesOption } from 'echarts/charts';
 import { LabelLayout } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
 
-echarts.use([PieChart, CanvasRenderer, LabelLayout]);
+echarts.use([PieChart, CanvasRenderer, LabelLayout, TooltipComponent, LegendComponent]);
 type EChartsOption = echarts.ComposeOption<PieSeriesOption>;
 type ContentTotalArrType = BulletinInfo['contentTotalArr']
 
@@ -57,19 +58,26 @@ function initChart() {
 
   chartInstance.value = echarts.init(chartContainer.value);
   const option: EChartsOption = {
+    tooltip: {
+      trigger: 'item',
+      valueFormatter: (value: number) => value + '字',
+    },
     series: [
       {
-        name: '公告内容分布',
+        name: newsInfo.value?.name?.slice(9) ?? '公告内容分布',
         type: 'pie',
-        radius: '50%',
+        radius: ['40%', '70%'],
         data: transformToEChartsData(newsInfo.value?.contentTotalArr),
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-          }
-        }
+        padAngle: 5,
+        itemStyle: {
+          borderRadius: 10
+        },
+        label: {
+          show: false
+        },
+        labelLine: {
+          show: false
+        },
       }
     ]
   };

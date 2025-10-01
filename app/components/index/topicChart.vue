@@ -21,6 +21,7 @@ import { CanvasRenderer } from 'echarts/renderers';
 
 import type { ListInVersionReturn, ContentTotal } from '@/api/bulletin'
 import { useChartsColorMode, useChartsAutoSize } from '~/composables'
+import { useComIsVisible } from '~/composables/home'
 //#endregion
 
 
@@ -122,7 +123,7 @@ const chartInstance = shallowRef<echarts.ECharts | null>(null);
 useChartsColorMode(chartInstance)
 useChartsAutoSize(chartInstance)
 
-function getSeriesData() {
+function getSeriesData(isMobile: boolean) {
   const seriesData: BarSeriesOption[] = []
   EffectiveParagraphTopicArray.forEach(topic => {
     seriesData.push({
@@ -133,7 +134,7 @@ function getSeriesData() {
         show: true,
         formatter: (params: any) => {
           const num = params.value?.[topic] || 0
-          return num === 0 ? '' : `${num}%`
+          return num === 0 || isMobile ? '' : `${num}%`
         }
       },
     })
@@ -144,6 +145,8 @@ function getSeriesData() {
 function initChart() {
   if (!chartContainer.value) return;
   chartInstance.value = echarts.init(chartContainer.value)
+
+  const isMobile = useMediaQuery('(max-width: 768px)').value
 
   const option: EChartsOption = {
     dataset: {
@@ -157,13 +160,13 @@ function initChart() {
       left: 'center',
       top: 'bottom',
     },
-    xAxis: {
+    yAxis: {
       type: 'category',
       axisLabel: {
-        rotate: 45,
+        rotate: 0,
       }
     },
-    yAxis: {
+    xAxis: {
       type: 'value',
       max: 100,
       axisLabel: {
@@ -173,7 +176,7 @@ function initChart() {
         show: true,
       }
     },
-    series: getSeriesData(),
+    series: getSeriesData(isMobile),
   };
 
   chartInstance.value.setOption(option);
@@ -182,9 +185,13 @@ function initChart() {
 
 
 
-onMounted(() => {
-  initChart();
-});
+const { isVisible } = useComIsVisible('topic')
+
+watch(isVisible, (visible) => {
+  if (visible) {
+    initChart()
+  }
+})
 
 onBeforeUnmount(() => {
   if (chartInstance.value) {

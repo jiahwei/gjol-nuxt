@@ -11,10 +11,10 @@
         </div>
       </div>
       <div v-else>
-        <div class="status-word">好耶！古网更新啦 🎉</div>
+        <div class="status-word">好耶！古网又更一周</div>
         <div class="desc-word">
           <span class="desc-word-import">{{ newsInfo?.versionName }}</span>
-          的第
+          已经坚持更新
           <span class="desc-word-import">{{ newsInfo?.order_by_date }}</span>
           周
         </div>
