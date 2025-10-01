@@ -1,8 +1,12 @@
 <template>
   <div class="h-screen w-full flex flex-col items-center justify-center">
-    <div class="text-3xl md:text-5xl font-bold  dark:text-white">不堪回首月明中</div>
+    <div class="main-word">不堪回首月明中</div>
     <versionChartV2 />
-    <!-- <div class="text-3xl md:text-5xl font-bold  dark:text-white">好一个江河日下</div> -->
+    <div class="w-70vw md:w-60vw flex justify-end">
+      <div class="tips-word self-end">
+        使用最勤奋的版本作为基准
+      </div>
+    </div>
   </div>
 </template>
 

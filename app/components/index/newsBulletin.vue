@@ -3,19 +3,19 @@
     <div
     class="layout-content flex flex-col md:flex-row justify-center items-center gap-space-xl  md: gap-space-2xl dark:text-white">
       <div v-if="isSuspended">
-        <div class="status-word">坏了！古网没苟住</div>
-        <div class="desc-word">
+        <div class="main-word">坏了！古网没苟住</div>
+        <div class="second-word">
           最近一次更新
-          <span class="desc-word-import">{{ diffDays }}</span>
+          <span class="second-word-font">{{ diffDays }}</span>
           天前
         </div>
       </div>
       <div v-else>
-        <div class="status-word">好耶！古网又更一周</div>
-        <div class="desc-word">
-          <span class="desc-word-import">{{ newsInfo?.versionName }}</span>
+        <div class="main-word">好耶！古网又更一周</div>
+        <div class="second-word">
+          <span class="second-word-font">{{ newsInfo?.versionName }}</span>
           已经坚持更新
-          <span class="desc-word-import">{{ newsInfo?.order_by_date }}</span>
+          <span class="second-word-font">{{ newsInfo?.order_by_date }}</span>
           周
         </div>
       </div>

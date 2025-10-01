@@ -147,6 +147,22 @@ function initChart() {
   chartInstance.value = echarts.init(chartContainer.value)
 
   const isMobile = useMediaQuery('(max-width: 768px)').value
+  const xAxisConfig = {
+    type: 'value',
+    max: 100,
+    axisLabel: {
+      formatter: '{value}%'
+    },
+    axisLine: {
+      show: true,
+    }
+  }
+  const yAxisConfig = {
+    type: 'category',
+    axisLabel: {
+      rotate: 0,
+    }
+  }
 
   const option: EChartsOption = {
     dataset: {
@@ -160,22 +176,8 @@ function initChart() {
       left: 'center',
       top: 'bottom',
     },
-    yAxis: {
-      type: 'category',
-      axisLabel: {
-        rotate: 0,
-      }
-    },
-    xAxis: {
-      type: 'value',
-      max: 100,
-      axisLabel: {
-        formatter: '{value}%'
-      },
-      axisLine: {
-        show: true,
-      }
-    },
+    xAxis: (isMobile ? xAxisConfig : yAxisConfig) as EChartsOption['xAxis'],
+    yAxis: (isMobile ? yAxisConfig : xAxisConfig) as EChartsOption['yAxis'],
     series: getSeriesData(isMobile),
   };
 
