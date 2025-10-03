@@ -8,7 +8,15 @@
 // echarts
 import * as echarts from 'echarts/core';
 import { LineChart } from 'echarts/charts';
-import { TitleComponent, GridComponent, TooltipComponent, LegendComponent, DatasetComponent, DataZoomComponent } from 'echarts/components'
+import {
+  TitleComponent,
+  GridComponent,
+  TooltipComponent,
+  LegendComponent,
+  DatasetComponent,
+  DataZoomComponent,
+  MarkLineComponent
+} from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers';
 import type { LineSeriesOption } from 'echarts/charts';
 
@@ -34,7 +42,9 @@ interface resolveList {
   // 版本总长度
   totalVersionLen: number;
   // 公告数量
-  bulletins: number
+  bulletins: number;
+  // 平均版本长度
+  average: number;
 }
 const resolveListInfo = computed<resolveList[]>(() => {
   let maxLen = 0
@@ -47,10 +57,11 @@ const resolveListInfo = computed<resolveList[]>(() => {
     result.push({
       acronyms: item.acronyms,
       startDate: item.start,
-      endDate: item.end,
+      endDate: item.end.length === 0 ? '至今' : item.end,
       val: Number(((item.totalVersionLen / maxLen) * 100).toFixed(1)),
       totalVersionLen: item.totalVersionLen,
-      bulletins: item.list.length
+      bulletins: item.list.length,
+      average: Number((item.totalVersionLen / item.list.length).toFixed(1))
     })
   })
   return result
@@ -59,7 +70,7 @@ const resolveListInfo = computed<resolveList[]>(() => {
 //#endregion
 
 type EChartsOption = echarts.ComposeOption<LineSeriesOption>;
-echarts.use([LineChart, TitleComponent, GridComponent, TooltipComponent, LegendComponent, DatasetComponent, DataZoomComponent, CanvasRenderer]);
+echarts.use([LineChart, TitleComponent, GridComponent, TooltipComponent, LegendComponent, DatasetComponent, DataZoomComponent, MarkLineComponent, CanvasRenderer]);
 const chartContainer = shallowRef<HTMLElement | null>(null);
 const chartInstance = shallowRef<echarts.ECharts | null>(null);
 
@@ -79,7 +90,7 @@ function tooltipFormatter(params: any) {
   <div class="p-0 bg-white dark:bg-gray-800 flex flex-col gap-space-md max-w-[200px]">
     <span class="color-[var(--text-color-primary)] font-bold break-words">${sourceItem.acronyms}</span>
     <span class="font-medium break-words whitespace-normal">${sourceItem.startDate}~${sourceItem.endDate}</span>
-    <span class="font-medium break-words whitespace-normal">${sourceItem.bulletins}条公告，共${sourceItem.totalVersionLen}字</span>
+    <span class="font-medium break-words whitespace-normal">${sourceItem.bulletins}周，公告共${sourceItem.totalVersionLen}字</span>
   </div>
   `
 }
@@ -94,32 +105,93 @@ function initChart() {
     animationDuration: 1000,
     dataset: {
       source: resolveListInfo.value,
-      dimensions: ['startDate', 'val'],
+      dimensions: ['startDate', 'average', 'bulletins'],
     },
     xAxis: {
-      type: 'category',
+      type: 'time',
       axisLabel: {
         rotate: isMobile ? 45 : 0,
         interval: isMobile ? 'auto' : 2
       }
     },
-    yAxis: {
-      type: 'value',
-      axisLabel: {
-        formatter: '{value}%'
+    yAxis: [
+      // {
+      //   type: 'value',
+      //   name: '版本内容',
+      //   position: 'left',
+      //   axisLabel: {
+      //     formatter: '{value}%'
+      //   },
+      //   axisLine: {
+      //     show: true,
+      //   }
+      // },
+      {
+        type: 'value',
+        name: '更新强度',
+        position: 'left',
+        axisLabel: {
+          formatter: '{value}字'
+        },
+        axisLine: {
+          show: true,
+        }
       },
-      axisLine: {
-        show: true,
+      {
+        type: 'value',
+        name: '版本延续',
+        position: 'right',
+        axisLabel: {
+          formatter: '{value}周'
+        },
+        axisLine: {
+          show: true,
+        }
       }
-    },
+    ],
     tooltip: {
       trigger: 'axis',
       formatter: tooltipFormatter,
       confine: true,
     },
     series: [{
+      name: '版本长度占比',
       type: 'line',
       smooth: true,
+      yAxisIndex: 0,
+      encode: { x: 'startDate', y: 'val' },
+      markLine: {
+        data: [
+          {
+            name: '白荆回廊发布',
+            xAxis: '2021-07-24',
+            label: {
+              show: true,
+              formatter: '白荆回廊发布'
+            }
+          },
+          {
+            name: '白荆回廊开服',
+            xAxis: '2024-01-12',
+            label: {
+              show: true,
+              formatter: '白荆回廊开服'
+            }
+          }
+        ],
+      }
+    }, {
+      name: '公告数量',
+      type: 'line',
+      smooth: true,
+      yAxisIndex: 1,
+      encode: { x: 'startDate', y: 'bulletins' },
+      lineStyle: {
+        color: '#52c41a'
+      },
+      itemStyle: {
+        color: '#52c41a'
+      }
     }],
     // dataZoom: [{
     //   type: "inside",

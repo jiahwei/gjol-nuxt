@@ -20,7 +20,7 @@ const isDark = computed(() => {
   return colorMode.value === 'dark'
 })
 function changeColorMode() {
-  colorMode.preference = colorMode.value === 'light' ? 'dark' : 'light'
+  colorMode.value = colorMode.value === 'light' ? 'dark' : 'light'
 }
 // 页面滚动位置
 const { y: scrollY } = useWindowScroll()

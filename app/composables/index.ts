@@ -2,5 +2,6 @@ export * from './uesPOST'
 export * from './useAPI'
 export * from './useDevice'
 export * from './useGet'
-export * from './echarts/useChartsColorMode'
-export * from './echarts/useChartsAutoSize'
+
+export * from "./home"
+export * from './echarts'

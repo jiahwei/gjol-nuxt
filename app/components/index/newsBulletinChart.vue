@@ -5,8 +5,7 @@
 
 <script lang="ts" setup>
 import type { BulletinInfo } from '@/api/bulletin'
-import { useComIsVisible } from '~/composables/home'
-import { useChartsColorMode } from '~/composables'
+import { useChartsColorMode, useChartColors, useComIsVisible } from '~/composables'
 
 
 const newsInfo = inject<Ref<BulletinInfo>>('newsInfo')!
@@ -42,6 +41,7 @@ const chartContainer = shallowRef<HTMLElement | null>(null);
 const chartInstance = shallowRef<echarts.ECharts | null>(null);
 
 useChartsColorMode(chartInstance)
+const { getColor } = useChartColors()
 
 function transformToEChartsData(list: ContentTotalArrType) {
   if (!Array.isArray(list) || list.length === 0) return []
@@ -50,6 +50,9 @@ function transformToEChartsData(list: ContentTotalArrType) {
     return {
       value: item?.leng,
       name: item?.type,
+      itemStyle: {
+        color: getColor(item?.type)
+      }
     }
   })
 }

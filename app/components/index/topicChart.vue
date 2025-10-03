@@ -21,7 +21,7 @@ import { CanvasRenderer } from 'echarts/renderers';
 
 import type { ListInVersionReturn, ContentTotal } from '@/api/bulletin'
 import { useChartsColorMode, useChartsAutoSize } from '~/composables'
-import { useComIsVisible } from '~/composables/home'
+import { useComIsVisible , useChartColors } from '~/composables'
 //#endregion
 
 
@@ -122,6 +122,7 @@ const chartInstance = shallowRef<echarts.ECharts | null>(null);
 
 useChartsColorMode(chartInstance)
 useChartsAutoSize(chartInstance)
+const { getColor } = useChartColors()
 
 function getSeriesData(isMobile: boolean) {
   const seriesData: BarSeriesOption[] = []
@@ -136,6 +137,9 @@ function getSeriesData(isMobile: boolean) {
           const num = params.value?.[topic] || 0
           return num === 0 || isMobile ? '' : `${num}%`
         }
+      },
+      itemStyle: {
+        color: getColor(topic)
       },
     })
   })
@@ -180,6 +184,7 @@ function initChart() {
     yAxis: (isMobile ? yAxisConfig : xAxisConfig) as EChartsOption['yAxis'],
     series: getSeriesData(isMobile),
   };
+  console.log(option)
 
   chartInstance.value.setOption(option);
 }
