@@ -6,6 +6,7 @@ export const shortcuts: Shortcut[] = [
   ['layout-main', 'w-full xl:mr-auto xl:ml-auto xl:max-w-screen-2xl'],
   ['layout-content', 'px-space-lg lg:px-space-xl w-full xl:mr-auto xl:ml-auto xl:max-w-screen-2xl'],
   ['switch-animation', 'transition duration-300'],
+  ['break-words', 'break-words whitespace-normal'],
   // 主要文本
   ['main-word', 'text-3xl md:text-4xl font-semibold text-[var(--text-color-primary)]'],
   // 次级文本

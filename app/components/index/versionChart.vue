@@ -24,8 +24,6 @@ import { useMediaQuery } from '@vueuse/core'
 
 // 本地
 import type { ListInVersionReturn } from '@/api/bulletin'
-import { useChartsColorMode, useChartsAutoSize } from '~/composables'
-import { useComIsVisible } from '~/composables/home'
 //#endregion
 
 
@@ -43,8 +41,8 @@ interface resolveList {
   totalVersionLen: number;
   // 公告数量
   bulletins: number;
-  // 平均版本长度
-  average: number;
+  // 公告版本中位数
+  medianLen: number;
 }
 const resolveListInfo = computed<resolveList[]>(() => {
   let maxLen = 0
@@ -54,14 +52,25 @@ const resolveListInfo = computed<resolveList[]>(() => {
 
   const result: resolveList[] = []
   listInfo.value.forEach(item => {
+    // 计算中位数
+    const sortedLens = [...item.list.map(item => item.totalLen)].sort((a, b) => a - b)
+    let medianLen: number
+    if (sortedLens.length === 0) {
+      medianLen = 1 // 防止除零错误
+    } else if (sortedLens.length % 2 === 0) {
+      medianLen = (sortedLens[sortedLens.length / 2 - 1]! + sortedLens[sortedLens.length / 2]!) / 2
+    } else {
+      medianLen = sortedLens[Math.floor(sortedLens.length / 2)]!
+    }
+
     result.push({
       acronyms: item.acronyms,
       startDate: item.start,
-      endDate: item.end.length === 0 ? '至今' : item.end,
+      endDate: item.end.length === 0 ? '-' : item.end,
       val: Number(((item.totalVersionLen / maxLen) * 100).toFixed(1)),
       totalVersionLen: item.totalVersionLen,
       bulletins: item.list.length,
-      average: Number((item.totalVersionLen / item.list.length).toFixed(1))
+      medianLen: Number(medianLen.toFixed(0))
     })
   })
   return result
@@ -89,8 +98,9 @@ function tooltipFormatter(params: any) {
   return `
   <div class="p-0 bg-white dark:bg-gray-800 flex flex-col gap-space-md max-w-[200px]">
     <span class="color-[var(--text-color-primary)] font-bold break-words">${sourceItem.acronyms}</span>
-    <span class="font-medium break-words whitespace-normal">${sourceItem.startDate}~${sourceItem.endDate}</span>
-    <span class="font-medium break-words whitespace-normal">${sourceItem.bulletins}周，公告共${sourceItem.totalVersionLen}字</span>
+    <span class="font-medium ">开始于：${sourceItem.startDate}</span>
+    <span class="font-medium break-words whitespace-normal">结束于：${sourceItem.endDate}</span>
+    <span class="font-medium break-words whitespace-normal">公告共<span class="font-bold px-1">${sourceItem.totalVersionLen.toLocaleString()}</span>字</span>
   </div>
   `
 }
@@ -105,7 +115,19 @@ function initChart() {
     animationDuration: 1000,
     dataset: {
       source: resolveListInfo.value,
-      dimensions: ['startDate', 'average', 'bulletins'],
+      dimensions: ['startDate', 'medianLen', 'bulletins'],
+    },
+    legend: {
+      show: true,
+      type: 'plain',
+      orient: 'horizontal',
+      left: 'center',
+      top: 'top',
+      itemGap: 20,
+      textStyle: {
+        fontSize: isMobile ? 12 : 14
+      },
+      data: ['公告字数中位数', '公告数量'] // 对应series中的name
     },
     xAxis: {
       type: 'time',
@@ -128,25 +150,47 @@ function initChart() {
       // },
       {
         type: 'value',
-        name: '更新强度',
+        name: '公告字数的中位数',
         position: 'left',
         axisLabel: {
-          formatter: '{value}字'
+          formatter: `{value} 字`
         },
         axisLine: {
           show: true,
-        }
+        },
+        splitLine: {
+          show: false,
+        },
+        axisPointer: {
+          show: true,
+          type: 'line',
+          label: {
+            show: true,
+            formatter: (params: any) => `${params.value.toLocaleString().replace(/\.\d+/, '')} 字`,
+          }
+        },
       },
       {
         type: 'value',
         name: '版本延续',
         position: 'right',
         axisLabel: {
-          formatter: '{value}周'
+          formatter: `{value} 周`
         },
         axisLine: {
           show: true,
-        }
+        },
+        splitLine: {
+          show: false,
+        },
+        axisPointer: {
+          show: true,
+          type: 'line',
+          label: {
+            show: true,
+            formatter: (params: any) => `${params.value.toLocaleString().replace(/\.\d+/, '')} 周`,
+          }
+        },
       }
     ],
     tooltip: {
@@ -155,11 +199,11 @@ function initChart() {
       confine: true,
     },
     series: [{
-      name: '版本长度占比',
+      name: '公告字数中位数',
       type: 'line',
       smooth: true,
       yAxisIndex: 0,
-      encode: { x: 'startDate', y: 'val' },
+      encode: { x: 'startDate', y: 'medianLen' },
       markLine: {
         data: [
           {
