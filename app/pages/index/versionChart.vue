@@ -162,7 +162,7 @@ function initChart() {
           show: false,
         },
         axisPointer: {
-          show: true,
+          show: !isMobile,
           type: 'line',
           label: {
             show: true,
@@ -184,7 +184,7 @@ function initChart() {
           show: false,
         },
         axisPointer: {
-          show: true,
+          show: !isMobile,
           type: 'line',
           label: {
             show: true,
@@ -198,50 +198,47 @@ function initChart() {
       formatter: tooltipFormatter,
       confine: true,
     },
-    series: [{
-      name: '公告字数中位数',
-      type: 'line',
-      smooth: true,
-      yAxisIndex: 0,
-      encode: { x: 'startDate', y: 'medianLen' },
-      markLine: {
-        data: [
-          {
-            name: '白荆回廊发布',
-            xAxis: '2021-07-24',
-            label: {
-              show: true,
-              formatter: '白荆回廊发布'
-            }
-          },
-          {
-            name: '白荆回廊开服',
-            xAxis: '2024-01-12',
-            label: {
-              show: true,
-              formatter: '白荆回廊开服'
-            }
-          }
-        ],
-      }
-    }, {
-      name: '公告数量',
-      type: 'line',
-      smooth: true,
-      yAxisIndex: 1,
-      encode: { x: 'startDate', y: 'bulletins' },
-      lineStyle: {
-        color: '#52c41a'
+    series: [
+      {
+        name: '公告字数中位数',
+        type: 'line',
+        smooth: true,
+        yAxisIndex: 0,
+        encode: { x: 'startDate', y: 'medianLen' },
+        // markLine: {
+        //   data: [
+        //     {
+        //       name: '白荆回廊发布',
+        //       xAxis: '2021-07-24',
+        //       label: {
+        //         show: true,
+        //         formatter: '白荆回廊发布'
+        //       }
+        //     },
+        //     {
+        //       name: '白荆回廊开服',
+        //       xAxis: '2024-01-12',
+        //       label: {
+        //         show: true,
+        //         formatter: '白荆回廊开服'
+        //       }
+        //     }
+        //   ],
+        // }
       },
-      itemStyle: {
-        color: '#52c41a'
-      }
-    }],
-    // dataZoom: [{
-    //   type: "inside",
-    //   start: 0,
-    //   end: useMediaQuery('(min-width: 768px)').value ? 100 : 50,
-    // }],
+      {
+        name: '公告数量',
+        type: 'line',
+        smooth: true,
+        yAxisIndex: 1,
+        encode: { x: 'startDate', y: 'bulletins' },
+        lineStyle: {
+          color: '#52c41a'
+        },
+        itemStyle: {
+          color: '#52c41a'
+        }
+      }],
   }
   chartInstance.value.setOption(option);
   setOtherConfig()

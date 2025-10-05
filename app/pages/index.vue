@@ -8,9 +8,9 @@
 
 <script lang="ts" setup>
 import { bulletinApi } from '@/api/index'
-import version from '~/components/index/version.vue';
-import newsBulletin from '~/components/index/newsBulletin.vue';
-import topic from '~/components/index/topic.vue';
+import version from './index/version.vue';
+import newsBulletin from './index/newsBulletin.vue';
+import topic from './index/topic.vue';
 import { useSectionVisibility } from '~/composables/home';
 
 

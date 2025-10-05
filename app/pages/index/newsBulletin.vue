@@ -29,7 +29,7 @@
 import { bulletinApi } from '@/api/index'
 import type { BulletinInfo } from '@/api/bulletin'
 import { useDateFormat, useNow } from '@vueuse/core'
-import newsBulletinChart from '~/components/index/newsBulletinChart.vue'
+import newsBulletinChart from './newsBulletinChart.vue'
 
 const { data: newsInfo } = await bulletinApi.getNewBulletin()
 provide('newsInfo', newsInfo)
