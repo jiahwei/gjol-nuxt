@@ -14,4 +14,9 @@ export const shortcuts: Shortcut[] = [
   ['second-word-font', 'font-bold second-word'],
   // tips
   ['tips-word', 'text-sm text-placeholder'],
+  // version 描述
+  ['desc-p', 'text-primary text-base/9 lg:text-lg/8 tracking-wider my-space-md break-words w-90vw md:w-70vw'],
+  ['desc-a', 'font-bold hover:underline'],
+  // 阴影效果
+  ['rambling-shadow', 'shadow-[0_2px_10px_hsla(0,0%,100%,0.15),inset_0_2px_2px_hsla(0,0%,0%,0.1)]'],
 ]

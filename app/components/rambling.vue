@@ -1,8 +1,11 @@
 <template>
-  <div class="desc-content rambling">
+  <div class="desc-p p-space-md rounded-md bg-code relative box-border rambling-shadow" >
     <p>
       <slot>{{ text }}</slot>
     </p>
+    <span class="absolute bottom-space-xs right-space-md text-xs text-disabled">
+      净北的碎碎念
+    </span>
   </div>
 </template>
 
@@ -14,19 +17,3 @@ const props = defineProps({
   }
 })
 </script>
-
-<style>
-.desc-content {
-  p {
-    @apply text-primary text-base/9 lg:text-lg/8 tracking-wider my-space-md break-words w-90vw md:w-70vw;
-  }
-  a{
-    @apply font-bold hover:underline;
-  }
-}
-.rambling {
-  box-shadow: 0 2px 10px hsla(0, 0%, 100%, 0.15),inset 0 2px 2px hsla(0, 0%, 0%, 0.1);
-  box-sizing: border-box;
-  @apply p-space-xs rounded-md bg-code;
-}
-</style>
