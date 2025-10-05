@@ -1,5 +1,5 @@
 <template>
-  <div ref="chartContainer" w-90vw md:w-80vw h-600px>
+  <div ref="chartContainer" w-90vw md:w-70vw h-600px>
   </div>
 </template>
 

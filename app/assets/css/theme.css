@@ -65,7 +65,7 @@
 
   /* 背景颜色 */
   --bg-color-page: hsl(0, 0%, 100%);
-  --bg-color-secondarypage: hsl(0, 0%, 96%);
+  --bg-color-secondarypage: hsl(0, 0%, 98%);
   --bg-color-demo: hsl(0, 0%, 100%);
   --bg-color-demo-secondary: hsl(0, 0%, 93%);
   --bg-color-code: hsl(0, 0%, 95%);
@@ -148,7 +148,7 @@
 
   /* 背景颜色 */
   --bg-color-page: hsl(0, 0%, 14%);
-  --bg-color-secondarypage: hsl(0, 0%, 9%);
+  --bg-color-secondarypage: hsl(0, 0%, 12%);
   --bg-color-demo: hsl(0, 0%, 9%);
   --bg-color-demo-secondary: hsl(0, 0%, 9%);
   --bg-color-code: hsl(0, 0%, 17%);
