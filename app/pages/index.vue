@@ -11,7 +11,6 @@ import { bulletinApi } from '@/api/index'
 import version from './index/version.vue';
 import newsBulletin from './index/newsBulletin.vue';
 import topic from './index/topic.vue';
-import { useSectionVisibility } from '~/composables/home';
 
 
 const homeDom = ref<HTMLElement|null>(null)

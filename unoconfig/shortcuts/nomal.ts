@@ -7,7 +7,7 @@ export const shortcuts: Shortcut[] = [
   ['layout-content', 'px-space-lg lg:px-space-xl w-full xl:mr-auto xl:ml-auto xl:max-w-screen-2xl'],
   ['switch-animation', 'transition duration-300'],
   // 主要文本
-  ['main-word', 'text-3xl md:text-4xl font-semibold text-primary]'],
+  ['main-word', 'text-3xl md:text-4xl font-semibold text-primary'],
   // 次级文本
   ['second-word', 'text-base mt-space-md text-secondary'],
   // 次级文本中的加重
