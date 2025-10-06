@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col  justify-center items-center" ref="homeDom">
-    <newsBulletin id="news" class="bg-page" @updateIsSuspended="setIsSuspended"/>
-    <version id="version" class="bg-secondary-page"/>
+    <newsBulletin id="news" class="bg-page border-b border-gray-200 dark:border-gray-700" @updateIsSuspended="setIsSuspended"/>
+    <version id="version" class="bg-page border-b border-gray-200 dark:border-gray-700"/>
     <topic id="topic" class="bg-page"/>
   </div>
 </template>

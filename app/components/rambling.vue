@@ -1,5 +1,5 @@
 <template>
-  <div class="desc-p p-space-md rounded-md bg-code relative box-border rambling-shadow" >
+  <div class="desc-content p-space-md rounded-md bg-code relative box-border rambling-shadow" >
     <p>
       <slot>{{ text }}</slot>
     </p>

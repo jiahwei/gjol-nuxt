@@ -127,7 +127,7 @@ function initChart() {
       textStyle: {
         fontSize: isMobile ? 12 : 14
       },
-      data: ['公告字数中位数', '公告数量'] // 对应series中的name
+      data: ['公告字数中位数', '公告数量']
     },
     xAxis: {
       type: 'time',
@@ -161,14 +161,14 @@ function initChart() {
         splitLine: {
           show: false,
         },
-        axisPointer: {
-          show: !isMobile,
-          type: 'line',
-          label: {
-            show: true,
-            formatter: (params: any) => `${params.value.toLocaleString().replace(/\.\d+/, '')} 字`,
-          }
-        },
+        // axisPointer: {
+        //   show: !isMobile,
+        //   type: 'line',
+        //   label: {
+        //     show: true,
+        //     formatter: (params: any) => `${params.value.toLocaleString().replace(/\.\d+/, '')} 字`,
+        //   }
+        // },
       },
       {
         type: 'value',
@@ -183,14 +183,14 @@ function initChart() {
         splitLine: {
           show: false,
         },
-        axisPointer: {
-          show: !isMobile,
-          type: 'line',
-          label: {
-            show: true,
-            formatter: (params: any) => `${params.value.toLocaleString().replace(/\.\d+/, '')} 周`,
-          }
-        },
+        // axisPointer: {
+        //   show: !isMobile,
+        //   type: 'line',
+        //   label: {
+        //     show: true,
+        //     formatter: (params: any) => `${params.value.toLocaleString().replace(/\.\d+/, '')} 周`,
+        //   }
+        // },
       }
     ],
     tooltip: {
@@ -237,6 +237,18 @@ function initChart() {
         },
         itemStyle: {
           color: '#52c41a'
+        },
+        markLine:{
+          data: [
+            {
+              name: '基准线',
+              yAxis: '20',
+              label: {
+                show: false,
+              },
+            }
+          ],
+          symbol: ['none', 'none']
         }
       }],
   }

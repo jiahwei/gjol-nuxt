@@ -15,8 +15,10 @@ export const shortcuts: Shortcut[] = [
   // tips
   ['tips-word', 'text-sm text-placeholder'],
   // version 描述
-  ['desc-p', 'text-primary text-base/9 lg:text-lg/8 tracking-wider my-space-md break-words w-90vw md:w-70vw'],
-  ['desc-a', 'font-bold hover:underline'],
+  ['desc-content', 'text-primary font-normal text-base/9 lg:text-lg/7 tracking-wider my-space-lg break-words w-90vw md:w-70vw'],
+  ['desc-a', 'font-medium hover:underline'],
+  ['desc-p', 'text-primary text-lg lg:text-3xl my-space-lg lg:my-space-xl tracking-tight'],
   // 阴影效果
   ['rambling-shadow', 'shadow-[0_2px_10px_hsla(0,0%,100%,0.15),inset_0_2px_2px_hsla(0,0%,0%,0.1)]'],
+  ['version-page-layout', 'min-h-screen w-full flex flex-col items-center justify-start py-space-xl px-space-lg']
 ]

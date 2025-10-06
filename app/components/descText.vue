@@ -1,5 +1,5 @@
 <template>
-  <p class="desc-p">
+  <p class="desc-content">
     <slot />
   </p>
 </template>
