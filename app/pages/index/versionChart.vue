@@ -90,7 +90,9 @@ const othercConfig = computed(() => ({
     extraCssText: colorMode.value === 'dark' ? 'background-color: #1e2939;' : 'background-color: #fff;'
   }
 }))
-const { setOtherConfig } = useChartsColorMode(chartInstance, '#171717', '#f5f5f5', othercConfig)
+// const { setOtherConfig } = useChartsColorMode(chartInstance, '#171717', '#f5f5f5', othercConfig)
+const { setOtherConfig } = useChartsColorMode(chartInstance)
+
 useChartsAutoSize(chartInstance)
 
 function tooltipFormatter(params: any) {

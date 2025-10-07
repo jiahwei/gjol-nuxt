@@ -95,6 +95,9 @@
   --text-color-secondary: var(--font-gray-2);
   --text-color-placeholder: var(--font-gray-3);
   --text-color-disabled: var(--font-gray-4);
+  --bg-color-button: hsl(240, 6%, 10%);
+  --text-color-foreground: var(--font-white-1);
+
 }
 .dark {
   --brand-color-1: hsla(207, 96%, 52%, 0.125);
@@ -174,7 +177,10 @@
   --font-white-3: hsla(0, 0%, 100%, 0.35);
   --font-white-4: hsla(0, 0%, 100%, 0.22);
   --text-color-primary: var(--font-white-1);
+
   --text-color-secondary: var(--font-white-2);
   --text-color-placeholder: var(--font-white-3);
   --text-color-disabled: var(--font-white-4);
+  --bg-color-button: hsl(0, 0%, 98%);
+  --text-color-foreground: var(--font-gray-1);
 }

@@ -1,7 +1,7 @@
 export * from './uesPOST'
 export * from './useAPI'
-export * from './useDevice'
 export * from './useGet'
+export * from './useDeviceType'
 
 export * from "./home"
 export * from './echarts'

@@ -14,6 +14,7 @@
     "types": "npx openapi-typescript http://127.0.0.1:8000/openapi.json -o ./app/api-types/api.d.ts"
   },
   "dependencies": {
+    "@ark-ui/vue": "^5.25.1",
     "echarts": "^6.0.0",
     "openapi-typescript": "^7.9.1",
     "ufo": "^1.6.1",

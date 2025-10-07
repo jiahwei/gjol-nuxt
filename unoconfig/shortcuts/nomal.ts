@@ -20,5 +20,6 @@ export const shortcuts: Shortcut[] = [
   ['desc-p', 'text-primary text-lg lg:text-3xl my-space-lg lg:my-space-xl tracking-tight'],
   // 阴影效果
   ['rambling-shadow', 'shadow-[0_2px_10px_hsla(0,0%,100%,0.15),inset_0_2px_2px_hsla(0,0%,0%,0.1)]'],
-  ['version-page-layout', 'min-h-screen w-full flex flex-col items-center justify-start py-space-xl px-space-lg']
+  ['rambling-shadow-up', 'shadow-[inset_0_1px_0px_hsl(224,84%,74%),0_1px_3px_hsla(0,0%,0%,0.1)]'],
+  ['version-page-layout', 'min-h-screen w-full flex flex-col items-center justify-start py-space-xl px-space-lg gap-space-sm']
 ]
