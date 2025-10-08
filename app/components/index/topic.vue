@@ -1,6 +1,7 @@
 <template>
-  <div class="h-screen w-full flex flex-col items-center justify-center">
+  <div class="version-page-layout position-relative">
     <my-svg :svgContent="topicSvg" />
+    <span class="desc-content">对公告的内容进行文本分类，试图展示古网在不同版本中更偏向哪类玩法。</span>
     <topicChart/>
   </div>
 </template>

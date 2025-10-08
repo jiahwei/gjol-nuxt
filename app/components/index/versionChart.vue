@@ -56,7 +56,7 @@ const resolveListInfo = computed<resolveList[]>(() => {
     const sortedLens = [...item.list.map(item => item.totalLen)].sort((a, b) => a - b)
     let medianLen: number
     if (sortedLens.length === 0) {
-      medianLen = 1 // 防止除零错误
+      medianLen = 1
     } else if (sortedLens.length % 2 === 0) {
       medianLen = (sortedLens[sortedLens.length / 2 - 1]! + sortedLens[sortedLens.length / 2]!) / 2
     } else {

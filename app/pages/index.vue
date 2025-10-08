@@ -1,8 +1,13 @@
 <template>
   <div class="flex flex-col  justify-center items-center" ref="homeDom">
-    <newsBulletin id="news" class="bg-page border-b border-gray-200 dark:border-gray-700" @updateIsSuspended="setIsSuspended"/>
-    <version id="version" class="bg-page border-b border-gray-200 dark:border-gray-700"/>
-    <topic id="topic" class="bg-page"/>
+    <newsBulletin id="news" class="bg-page border-b border-gray-200 dark:border-gray-700"
+      @updateIsSuspended="setIsSuspended" />
+    <version id="version" class="bg-page border-b border-gray-200 dark:border-gray-700" />
+    <topic id="topic" class="bg-page border-b border-gray-200 dark:border-gray-700" />
+    <ClientOnly>
+      <feature id="feature" class="bg-page" />
+
+    </ClientOnly>
   </div>
 </template>
 
@@ -11,9 +16,10 @@ import { bulletinApi } from '@/api/index'
 import version from '~/components/index/version.vue';
 import newsBulletin from '~/components/index/newsBulletin.vue';
 import topic from '~/components/index/topic.vue';
+import feature from '~/components/index/feature.vue';
 
 
-const homeDom = ref<HTMLElement|null>(null)
+const homeDom = ref<HTMLElement | null>(null)
 const { visibilityMap } = useSectionVisibility(homeDom)
 provide('sectionVisibility', visibilityMap)
 
