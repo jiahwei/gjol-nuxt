@@ -9,8 +9,8 @@
 <script lang="ts" setup>
 import { bulletinApi } from '@/api/index'
 import version from './index/version.vue';
-import newsBulletin from './index/newsBulletin.vue';
-import topic from './index/topic.vue';
+import newsBulletin from '~/components/index/newsBulletin.vue';
+import topic from '~/components/index/topic.vue';
 
 
 const homeDom = ref<HTMLElement|null>(null)
