@@ -24,3 +24,8 @@ logs
 
 #本地随手写的文件夹
 for-test
+
+# 部署配置文件
+.env.deploy
+*.pem
+*.key
