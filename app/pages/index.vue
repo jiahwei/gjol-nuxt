@@ -8,7 +8,7 @@
 
 <script lang="ts" setup>
 import { bulletinApi } from '@/api/index'
-import version from './index/version.vue';
+import version from '~/components/index/version.vue';
 import newsBulletin from '~/components/index/newsBulletin.vue';
 import topic from '~/components/index/topic.vue';
 

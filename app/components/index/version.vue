@@ -2,7 +2,7 @@
   <div class="version-page-layout gap-space-sm position-relative]">
     <my-svg :svgContent="versionSvg" />
     <span class="desc-content">本站收集了自古剑奇谭网络版（以下简称“古网”）开服以来的所有官方公告，并依据版本对公告进行分类和统计。</span>
-    <versionChart />
+    <versionChart id="versionChart"/>
     <my-button
       :class="{ 'position-sticky z-10 top-[calc(100vh-100px)] left-1/2 transform -translate-x-1/2': collapsible.open }"
       @click="setOpen">
@@ -11,7 +11,7 @@
           愿意看下净北的意见吗
         </span>
         <span v-else>
-          不要在说啦
+          收起
         </span>
       </div>
     </my-button>
@@ -28,10 +28,10 @@ import versionChart from './versionChart.vue'
 import versionSvg from '~/assets/svg/version.svg?raw'
 import versionDesc from './versionDesc.vue'
 import { Collapsible, useCollapsible } from '@ark-ui/vue/collapsible'
+// const { isMobile } = useDeviceType()
 
+//#region 折叠
 const collapsible = useCollapsible()
-// const { isMobile } = useDevic  eType()
-
 function setOpen() {
   const openStatue = collapsible.value.open
   collapsible.value.setOpen(!openStatue)
@@ -39,7 +39,6 @@ function setOpen() {
     setTimeout(() => {
       const versionElement = document.getElementById('version')
       if (versionElement) {
-        // 获取 version 元素的底部位置
         const rect = versionElement.getBoundingClientRect()
         const elementBottom = rect.bottom + window.scrollY
 
@@ -52,7 +51,10 @@ function setOpen() {
     }, 0)
   }
 }
+
+//#endregion
+
+//#region 图表小窗
+
+//#endregion
 </script>
-
-
-<style></style>
