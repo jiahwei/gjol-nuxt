@@ -1,15 +1,15 @@
 <template>
   <div class="flex flex-col items-center justify-start w-90vw md:w-70vw">
-    <p class="desc-content">众所周知，游戏的更新强度在整个生命周期内逐渐降低。表现在折线图上就是<span class="text-[#5470c6] mx-1">蓝线</span>整体呈现下降趋势。</p>
-    <p class="desc-content">但是<span class="text-[#5470c6] mx-1">蓝线</span>存在俩次逆势上涨，第一次是2019年7月游戏正式公测，公测更新内容多也是意料之中吧。</p>
+    <p class="desc-content">众所周知，游戏的更新强度在整个生命周期内逐渐降低。表现在折线图上就是<span class="text-[#3fb1e3] mx-1">蓝线</span>整体呈现下降趋势。</p>
+    <p class="desc-content">但是<span class="text-[#3fb1e3] mx-1">蓝线</span>存在俩次逆势上涨，第一次是2019年7月游戏正式公测，公测更新内容多也是意料之中吧。</p>
     <p class="desc-content">第二次是2021年12月的玉轮铃音版本，这个版本我们稍后再谈。</p>
     <p class="desc-content">
-      <span class="text-[#91cc75] mx-1">绿线</span>代表版本持续了多久，图表中<span
-        class="text-[#91cc75] mx-1 border-dashed border-b border-current">绿色虚线</span>是四个月，可以看到多数版本在这条线附近。
+      <span class="text-[#6be6c1] mx-1">绿线</span>代表版本持续了多久，图表中<span
+        class="text-[#6be6c1] mx-1 border-dashed border-b border-current">绿色虚线</span>是四个月，可以看到多数版本在这条线附近。
     </p>
     <p class="desc-content">
-      假设玉轮铃音版本没有逆势上涨，那么<span class="text-[#5470c6] mx-1">蓝线</span>和<span
-        class="text-[#91cc75] mx-1">绿线</span>只会有一次相交——2020年7月结束的风动心弦版本。
+      假设玉轮铃音版本没有逆势上涨，那么<span class="text-[#3fb1e3] mx-1">蓝线</span>和<span
+        class="text-[#6be6c1] mx-1">绿线</span>只会有一次相交——2020年7月结束的风动心弦版本。
     </p>
     <!-- 雅达利时刻 -->
     <h3 class="desc-p">
@@ -45,7 +45,7 @@
       古网的“最后的荣光”
     </h3>
     <p class="desc-content">
-      在2021年12月，版本玉轮铃音上线，也是图表中<span class="text-[#5470c6] mx-1">蓝线</span>第二次逆势上涨。
+      在2021年12月，版本玉轮铃音上线，也是图表中<span class="text-[#3fb1e3] mx-1">蓝线</span>第二次逆势上涨。
     </p>
     <p class="desc-content">
       比起更新强度的上升，这个版本对游戏内容的革新更加让人兴奋。
@@ -58,16 +58,16 @@
     </p>
 
     <p class="desc-content">
-      时间来到2022年7月，<span class="text-[#5470c6] mx-1">蓝线</span>和<span class="text-[#91cc75] mx-1">绿线</span>第二次相交。
+      时间来到2022年7月，<span class="text-[#3fb1e3] mx-1">蓝线</span>和<span class="text-[#6be6c1] mx-1">绿线</span>第二次相交。
     </p>
 
     <p class="desc-content">
       这个时间点之后的帝首熠兮版本持续时间异常的久，图中可以看到它超过了<span
-        class="text-[#91cc75] mx-1 border-dashed border-b border-current">绿色虚线</span>，而且紧接着几个版本更是山外有山。
+        class="text-[#6be6c1] mx-1 border-dashed border-b border-current">绿色虚线</span>，而且紧接着几个版本更是山外有山。
     </p>
 
     <p class="desc-content">
-      当下一次版本的持续时间降到<span class="text-[#91cc75] mx-1 border-dashed border-b border-current">绿色虚线</span>以下时，迎接玩家的是新的时代。
+      当下一次版本的持续时间降到<span class="text-[#6be6c1] mx-1 border-dashed border-b border-current">绿色虚线</span>以下时，迎接玩家的是新的时代。
     </p>
 
     <h3 class="desc-p">
@@ -85,7 +85,7 @@
       2023年12月，姗姗来迟的“新版本”上线了——寰宇会。
     </p>
     <p class="desc-content">
-      它不同于以往的任何一个版本，更新的强度弱的可怜，可以在图表中看到<span class="text-[#5470c6] mx-1">蓝线</span>断层下降。
+      它不同于以往的任何一个版本，更新的强度弱的可怜，可以在图表中看到<span class="text-[#3fb1e3] mx-1">蓝线</span>断层下降。
     </p>
     <p class="desc-content">
       而且几乎没有新的内容，只是对已有的内容排列组合。

@@ -1,7 +1,7 @@
 <template>
   <div class="version-page-layout position-relative">
     <my-svg :svgContent="versionSvg" />
-    <span class="desc-content">本站收集了自古剑奇谭网络版（以下简称“古网”）开服以来的所有官方公告，并依据版本对公告进行分类和统计。</span>
+    <span class="desc-content w-auto justify-self-center">本站收集了自古剑奇谭网络版（以下简称“古网”）开服以来的所有官方公告，并依据版本对公告进行分类和统计。</span>
     <versionChart id="versionChart"/>
     <my-button
       :class="{ 'position-sticky z-10 top-[calc(100vh-100px)] left-1/2 transform -translate-x-1/2': collapsible.open }"

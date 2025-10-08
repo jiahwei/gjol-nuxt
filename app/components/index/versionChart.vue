@@ -1,5 +1,5 @@
 <template>
-  <div ref="chartContainer" w-90vw md:w-70vw h-600px>
+  <div ref="chartContainer" class="w-90vw md:w-70vw h-70vh">
   </div>
 </template>
 
@@ -24,10 +24,13 @@ import { useMediaQuery } from '@vueuse/core'
 
 // 本地
 import type { ListInVersionReturn } from '@/api/bulletin'
+import chartJson from '~/assets/charts.json'
 //#endregion
 
 
 //#region 数据处理
+
+
 
 const listInfo = inject<Ref<Array<ListInVersionReturn>>>('listInfo', ref([]))
 interface resolveList {
@@ -78,6 +81,8 @@ const resolveListInfo = computed<resolveList[]>(() => {
 
 //#endregion
 
+
+echarts.registerTheme('walden', chartJson)
 type EChartsOption = echarts.ComposeOption<LineSeriesOption>;
 echarts.use([LineChart, TitleComponent, GridComponent, TooltipComponent, LegendComponent, DatasetComponent, DataZoomComponent, MarkLineComponent, CanvasRenderer]);
 const chartContainer = shallowRef<HTMLElement | null>(null);
@@ -111,7 +116,7 @@ function initChart() {
   if (!chartContainer.value) return;
   const isMobile = useMediaQuery('(max-width: 768px)').value
 
-  chartInstance.value = echarts.init(chartContainer.value);
+  chartInstance.value = echarts.init(chartContainer.value, 'walden');
 
   const option: EChartsOption = {
     animationDuration: 1000,

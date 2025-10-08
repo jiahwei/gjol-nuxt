@@ -1,5 +1,5 @@
 <template>
-  <div ref="chartContainer" w-90vw md:w-80vw h-600px>
+  <div ref="chartContainer" class="w-90vw md:w-70vw h-70vh">
   </div>
 </template>
 
@@ -19,9 +19,10 @@ import type { BarSeriesOption } from 'echarts/charts';
 import { CanvasRenderer } from 'echarts/renderers';
 
 
+
 import type { ListInVersionReturn, ContentTotal } from '@/api/bulletin'
 import { useChartsColorMode, useChartsAutoSize } from '~/composables'
-import { useComIsVisible , useChartColors } from '~/composables'
+import { useComIsVisible, useChartColors } from '~/composables'
 //#endregion
 
 
@@ -148,7 +149,7 @@ function getSeriesData(isMobile: boolean) {
 
 function initChart() {
   if (!chartContainer.value) return;
-  chartInstance.value = echarts.init(chartContainer.value)
+  chartInstance.value = echarts.init(chartContainer.value, 'walden');
 
   const isMobile = useMediaQuery('(max-width: 768px)').value
   const xAxisConfig = {
@@ -159,12 +160,13 @@ function initChart() {
     },
     axisLine: {
       show: true,
-    }
+    },
   }
   const yAxisConfig = {
     type: 'category',
     axisLabel: {
-      rotate: 0,
+      rotate: isMobile ? 0 : 45,
+      interval: isMobile ? 'auto' : 0
     }
   }
 
