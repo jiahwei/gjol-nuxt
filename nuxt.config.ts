@@ -1,5 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    head: {
+      title: 'GjolDB',
+      meta: [
+        { name: 'description', content: 'gjol DB收集、统计和分析古网的公告数据。' },
+      ],
+    },
+  },
   modules: [
     '@nuxt/devtools',
     '@vueuse/nuxt',
@@ -37,7 +45,7 @@ export default defineNuxtConfig({
     '/': { static: true },
   },
 
-  compatibilityDate: '2025-04-03',
+  compatibilityDate: '2025-10-09',
 
   nitro: {
     preset: 'static',
