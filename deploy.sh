@@ -111,7 +111,3 @@ echo "清理本地临时文件..."
 rm ${IMAGE_NAME}-${IMAGE_TAG}.tar
 
 echo "部署完成! 网站已在服务器上通过Docker容器运行，端口: ${CONTAINER_PORT}"
-EOF
-
-# 给脚本执行权限
-chmod +x deploy.sh

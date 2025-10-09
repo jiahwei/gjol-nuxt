@@ -13,7 +13,7 @@ export function useChartsColorMode(
         backgroundColor: colorMode.value === 'dark' ? darkColor : lightColor,
         ...config.value,
       }
-      chartInstance.value.setTheme(colorMode.value === 'dark' ? 'dark' : 'default')
+      chartInstance.value.setTheme(colorMode.value === 'dark' ? 'walden' : 'walden')
       chartInstance.value.setOption(option)
     }
   })

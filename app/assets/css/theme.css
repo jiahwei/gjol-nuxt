@@ -9,8 +9,6 @@
   --font-gray-2: hsla(0, 0%, 0%, 0.6);
   --font-gray-3: hsla(0, 0%, 0%, 0.4);
   --font-gray-4: hsla(0, 0%, 0%, 0.26);
-  --text-color-anti: hsl(0, 0%, 100%);
-  --text-color-brand: var(--brand-color);
   --text-color-link: var(--brand-color);
 }
 .light {
@@ -21,39 +19,6 @@
   --brand-color-5: hsl(207, 96%, 52%);
   --brand-color-6: hsl(207, 100%, 41%);
   --brand-color-7: hsl(207, 100%, 33%);
-  --brand-color-8: hsl(207, 100%, 25%);
-  --brand-color-9: hsl(207, 100%, 18%);
-  --brand-color-10: hsl(207, 100%, 12%);
-  --warning-color-1: hsl(33, 86%, 95%);
-  --warning-color-2: hsl(33, 73%, 88%);
-  --warning-color-3: hsl(33, 73%, 78%);
-  --warning-color-4: hsl(33, 73%, 66%);
-  --warning-color-5: hsl(33, 73%, 55%);
-  --warning-color-6: hsl(18, 73%, 47%);
-  --warning-color-7: hsl(18, 73%, 41%);
-  --warning-color-8: hsl(18, 73%, 34%);
-  --warning-color-9: hsl(18, 73%, 28%);
-  --warning-color-10: hsl(18, 73%, 19%);
-  --error-color-1: hsl(353, 71%, 96%);
-  --error-color-2: hsl(353, 71%, 90%);
-  --error-color-3: hsl(353, 71%, 84%);
-  --error-color-4: hsl(353, 71%, 76%);
-  --error-color-5: hsl(353, 71%, 69%);
-  --error-color-6: hsl(353, 71%, 59%);
-  --error-color-7: hsl(353, 71%, 49%);
-  --error-color-8: hsl(353, 71%, 41%);
-  --error-color-9: hsl(353, 71%, 33%);
-  --error-color-10: hsl(353, 71%, 21%);
-  --success-color-1: hsl(150, 50%, 94%);
-  --success-color-2: hsl(150, 50%, 83%);
-  --success-color-3: hsl(150, 50%, 70%);
-  --success-color-4: hsl(150, 50%, 53%);
-  --success-color-5: hsl(150, 100%, 33%);
-  --success-color-6: hsl(150, 92%, 29%);
-  --success-color-7: hsl(150, 92%, 25%);
-  --success-color-8: hsl(150, 92%, 21%);
-  --success-color-9: hsl(150, 92%, 17%);
-  --success-color-10: hsl(150, 92%, 11%);
 
   --brand-color: var(--brand-color-5);
   --brand-main: var(--brand-color-5);
@@ -66,38 +31,23 @@
   /* 背景颜色 */
   --bg-color-page: hsl(0, 0%, 100%);
   --bg-color-secondarypage: hsl(0, 0%, 98%);
-  --bg-color-demo: hsl(0, 0%, 100%);
-  --bg-color-demo-secondary: hsl(0, 0%, 93%);
   --bg-color-code: hsl(0, 0%, 95%);
-  --bg-color-code-linear: linear-gradient(180deg, hsla(0, 0%, 95%, 1) 0%, hsla(0, 0%, 95%, 0) 100%);
   --bg-color-footer: hsl(0, 0%, 93%);
-  --bg-color-secondaryfooter: hsl(0, 0%, 91%);
   --bg-color-borer: hsl(0, 0%, 91%);
-  --bg-color-docpage: hsl(0, 0%, 100%);
-  --bg-color-container: hsl(0, 0%, 100%);
-  --bg-color-container-transparent: hsla(0, 0%, 100%, 0.9);
-  --bg-color-secondarycontainer: hsl(0, 0%, 96%);
-  --bg-color-component: hsl(0, 0%, 93%);
-  --bg-color-component-transparent: hsla(0, 0%, 93%, 0.9);
-  --bg-color-tag: hsl(0, 0%, 93%);
-  --bg-color-tab: hsl(0, 0%, 93%);
-  --bg-color-table: hsl(0, 0%, 100%);
-  --bg-color-thead: hsl(0, 0%, 86%);
-  --bg-color-navigation: hsl(0, 0%, 100%);
-  --bg-color-card: hsl(0, 0%, 100%);
+  --bg-color-button: hsl(240, 6%, 10%);
+
 
   /* 字体颜色 */
   --font-white-1: hsl(0, 0%, 100%);
   --font-white-2: hsla(0, 0%, 100%, 0.55);
   --font-white-3: hsla(0, 0%, 100%, 0.35);
   --font-white-4: hsla(0, 0%, 100%, 0.22);
+
   --text-color-primary: var(--font-gray-1);
   --text-color-secondary: var(--font-gray-2);
   --text-color-placeholder: var(--font-gray-3);
   --text-color-disabled: var(--font-gray-4);
-  --bg-color-button: hsl(240, 6%, 10%);
   --text-color-foreground: var(--font-white-1);
-
 }
 .dark {
   --brand-color-1: hsla(207, 96%, 52%, 0.125);
@@ -107,39 +57,6 @@
   --brand-color-5: hsl(207, 100%, 41%);
   --brand-color-6: hsl(207, 96%, 52%);
   --brand-color-7: hsl(220, 100%, 71%);
-  --brand-color-8: hsl(220, 100%, 82%);
-  --brand-color-9: hsl(220, 100%, 90%);
-  --brand-color-10: hsl(220, 100%, 96%);
-  --warning-color-1: hsl(18, 45%, 21%);
-  --warning-color-2: hsl(18, 45%, 24%);
-  --warning-color-3: hsl(18, 52%, 29%);
-  --warning-color-4: hsl(18, 59%, 41%);
-  --warning-color-5: hsl(18, 65%, 49%);
-  --warning-color-6: hsl(18, 65%, 53%);
-  --warning-color-7: hsl(18, 65%, 63%);
-  --warning-color-8: hsl(18, 65%, 74%);
-  --warning-color-9: hsl(18, 65%, 84%);
-  --warning-color-10: hsl(18, 65%, 91%);
-  --error-color-1: hsl(353, 32%, 21%);
-  --error-color-2: hsl(353, 37%, 27%);
-  --error-color-3: hsl(353, 35%, 33%);
-  --error-color-4: hsl(353, 37%, 37%);
-  --error-color-5: hsl(353, 44%, 44%);
-  --error-color-6: hsl(353, 54%, 54%);
-  --error-color-7: hsl(353, 64%, 64%);
-  --error-color-8: hsl(353, 64%, 73%);
-  --error-color-9: hsl(353, 64%, 82%);
-  --error-color-10: hsl(353, 64%, 89%);
-  --success-color-1: hsl(150, 39%, 16%);
-  --success-color-2: hsl(150, 39%, 19%);
-  --success-color-3: hsl(150, 50%, 21%);
-  --success-color-4: hsl(150, 82%, 27%);
-  --success-color-5: hsl(150, 92%, 31%);
-  --success-color-6: hsl(150, 42%, 48%);
-  --success-color-7: hsl(150, 45%, 51%);
-  --success-color-8: hsl(150, 45%, 66%);
-  --success-color-9: hsl(150, 45%, 79%);
-  --success-color-10: hsl(150, 45%, 89%);
 
   --brand-main: var(--brand-color-6);
   --brand-color-light: var(--brand-color-1);
@@ -152,35 +69,19 @@
   /* 背景颜色 */
   --bg-color-page: hsl(0, 0%, 14%);
   --bg-color-secondarypage: hsl(0, 0%, 12%);
-  --bg-color-demo: hsl(0, 0%, 9%);
-  --bg-color-demo-secondary: hsl(0, 0%, 9%);
   --bg-color-code: hsl(0, 0%, 17%);
-  --bg-color-code-linear: linear-gradient(180deg, hsla(0, 0%, 17%, 1) 0%, hsla(0, 0%, 17%, 0) 100%);
   --bg-color-footer: hsl(0, 0%, 9%);
-  --bg-color-secondaryfooter: hsl(0, 0%, 6%);
-  --bg-color-borer: hsl(0, 0%, 6%);
-  --bg-color-docpage: hsl(0, 0%, 14%);
-  --bg-color-container: hsl(0, 0%, 14%);
-  --bg-color-container-transparent: hsla(0, 0%, 17%, 0.9);
-  --bg-color-secondarycontainer: hsl(0, 0%, 22%);
-  --bg-color-component: hsl(0, 0%, 22%);
-  --bg-color-component-transparent: hsla(0, 0%, 29%, 0.9);
-  --bg-color-tag: hsl(0, 0%, 29%);
-  --bg-color-tab: hsl(0, 0%, 22%);
-  --bg-color-table: hsl(0, 0%, 14%);
-  --bg-color-thead: hsl(0, 0%, 29%);
-  --bg-color-navigation: hsl(0, 0%, 17%);
-  --bg-color-card: hsl(0, 0%, 22%);
+  --bg-color-button: hsl(0, 0%, 98%);
+
 
   --font-white-1: hsla(0, 0%, 100%, 0.9);
   --font-white-2: hsla(0, 0%, 100%, 0.55);
   --font-white-3: hsla(0, 0%, 100%, 0.35);
   --font-white-4: hsla(0, 0%, 100%, 0.22);
-  --text-color-primary: var(--font-white-1);
 
+  --text-color-primary: var(--font-white-1);
   --text-color-secondary: var(--font-white-2);
   --text-color-placeholder: var(--font-white-3);
   --text-color-disabled: var(--font-white-4);
-  --bg-color-button: hsl(0, 0%, 98%);
   --text-color-foreground: var(--font-gray-1);
 }

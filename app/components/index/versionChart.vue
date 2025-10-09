@@ -88,15 +88,15 @@ echarts.use([LineChart, TitleComponent, GridComponent, TooltipComponent, LegendC
 const chartContainer = shallowRef<HTMLElement | null>(null);
 const chartInstance = shallowRef<echarts.ECharts | null>(null);
 
-const colorMode = useColorMode()
-const othercConfig = computed(() => ({
+// const colorMode = useColorMode()
+// const othercConfig = computed(() => ({
 
-  tooltip: {
-    extraCssText: colorMode.value === 'dark' ? 'background-color: #1e2939;' : 'background-color: #fff;'
-  }
-}))
+//   tooltip: {
+//     extraCssText: colorMode.value === 'dark' ? 'background-color: #1e2939;' : 'background-color: #fff;'
+//   }
+// }))
 // const { setOtherConfig } = useChartsColorMode(chartInstance, '#171717', '#f5f5f5', othercConfig)
-const { setOtherConfig } = useChartsColorMode(chartInstance)
+// const { setOtherConfig } = useChartsColorMode(chartInstance)
 
 useChartsAutoSize(chartInstance)
 
@@ -190,6 +190,7 @@ function initChart() {
         splitLine: {
           show: false,
         },
+        max: 50,
         // axisPointer: {
         //   show: !isMobile,
         //   type: 'line',
@@ -260,7 +261,7 @@ function initChart() {
       }],
   }
   chartInstance.value.setOption(option);
-  setOtherConfig()
+  // setOtherConfig()
 }
 
 const { isVisible } = useComIsVisible('version')
