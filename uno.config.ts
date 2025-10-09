@@ -28,11 +28,14 @@ export default defineConfig({
     presetWebFonts({
       provider: 'google',
       fonts: {
-        sans: 'Nunito',
-        nunito: [
+        serif: [
           {
-            name: 'Nunito',
-            weights: ['400', '700'], // 可选权重
+            name: 'Noto Serif SC', // 中文简体
+            weights: ['400', '500', '700'],
+          },
+          {
+            name: 'Noto Serif', // 英文衬线
+            weights: ['400', '500', '700'],
           },
         ],
       },
