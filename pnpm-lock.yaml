@@ -33,6 +33,9 @@ importers:
       '@iconify-json/material-symbols':
         specifier: ^1.2.34
         version: 1.2.34
+      '@iconify-json/tabler':
+        specifier: ^1.2.23
+        version: 1.2.23
       '@nuxt/devtools':
         specifier: ^2.6.5
         version: 2.6.5(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(less@4.4.1)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.22(typescript@5.9.3))
@@ -48,6 +51,9 @@ importers:
       '@unocss/nuxt':
         specifier: ^66.5.2
         version: 66.5.2(magicast@0.3.5)(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(less@4.4.1)(terser@5.44.0)(yaml@2.8.1))(webpack@5.98.0(esbuild@0.25.9))
+      '@unocss/preset-icons':
+        specifier: ^66.5.3
+        version: 66.5.3
       '@vueuse/core':
         specifier: ^13.9.0
         version: 13.9.0(vue@3.5.22(typescript@5.9.3))
@@ -694,6 +700,9 @@ packages:
   '@iconify-json/material-symbols@1.2.34':
     resolution: {integrity: sha512-qOn1q0lMlLvSHTci0sabhKbfQ3h2XfahsoSWMy2X7eITQRoKrENuFKPB9x2bpvq+d1XxPiz/4UTFgfy/ejiFmg==}
 
+  '@iconify-json/tabler@1.2.23':
+    resolution: {integrity: sha512-Knb8ykgMwB5uSoqrDv1xIdJYM03OP06OXjN6QvGXaTNtdHkW9ciKA+aftz6lwM2jwJA+bsUWeDzLBlPt2uJm4w==}
+
   '@iconify/collections@1.0.603':
     resolution: {integrity: sha512-dTIHiJHwk8843m6qgVA6i8aKnqLNDWiN2HsjKvfVSQIch8VqxpXgw+P2xF+rKVsaLg2rbHFR7iZFolccN9m/fw==}
 
@@ -705,6 +714,9 @@ packages:
 
   '@iconify/utils@3.0.1':
     resolution: {integrity: sha512-A78CUEnFGX8I/WlILxJCuIJXloL0j/OJ9PSchPAfCargEIKmUBWvvEMmKWB5oONwiUqlNt+5eRufdkLxeHIWYw==}
+
+  '@iconify/utils@3.0.2':
+    resolution: {integrity: sha512-EfJS0rLfVuRuJRn4psJHtK2A9TqVnkxPpHY6lYHiB9+8eSuudsxbwMiavocG45ujOo6FJ+CIRlRnlOGinzkaGQ==}
 
   '@iconify/vue@4.3.0':
     resolution: {integrity: sha512-Xq0h6zMrHBbrW8jXJ9fISi+x8oDQllg5hTDkDuxnWiskJ63rpJu9CvJshj8VniHVTbsxCg9fVoPAaNp3RQI5OQ==}
@@ -1697,6 +1709,9 @@ packages:
   '@unocss/core@66.5.2':
     resolution: {integrity: sha512-POSEpwj2FJtrDgzSq6nVhAJbnGIYPqtEMTpzQXfeFqPDMidAXjaH/xZUeTdHDbI9Jg700smrRXJtFJrJFXkmiQ==}
 
+  '@unocss/core@66.5.3':
+    resolution: {integrity: sha512-sGGBgtIfH3Ch7syIzJvA86iIVhSjfGThHBSDA0kFgGTBiYv2VBaUq0UpDfeMpda3LSg59LfEL5Fqa9kUqju5xQ==}
+
   '@unocss/extractor-arbitrary-variants@66.5.2':
     resolution: {integrity: sha512-MNHzhA4RKJJVo6D5Uc+SkPfeugO1KXDt0GFg0FkOUKTTnahxyXNvd9BG9HHYlKSiaYCgUhFmysNhv04Gza+CNg==}
 
@@ -1717,6 +1732,9 @@ packages:
 
   '@unocss/preset-icons@66.5.2':
     resolution: {integrity: sha512-vjSwttkZrU8FfIo4TCkSOAIba0xbWE6N3/xEdK3tjq+FSgClzs9SmO06KLJHSntJ/N5JYA0wpkPS5mLYxGMwqw==}
+
+  '@unocss/preset-icons@66.5.3':
+    resolution: {integrity: sha512-HACUwHZBXi9lOU6kNziIMAkNwtMkM57LN1YqLz0UC01rTB+wzO/gQIKEbhZYdAj+Egw9fr9Pt/syxOdFJ3Aa7Q==}
 
   '@unocss/preset-mini@66.5.2':
     resolution: {integrity: sha512-YLOuYq7GNoWNgF3P41AtcvnOodSP49x0RNM4PR/ntGddl0BfsFaKeCGzt8DpbvavhQpBn0+kt4GP3RajKooAIQ==}
@@ -6291,6 +6309,10 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
+  '@iconify-json/tabler@1.2.23':
+    dependencies:
+      '@iconify/types': 2.0.0
+
   '@iconify/collections@1.0.603':
     dependencies:
       '@iconify/types': 2.0.0
@@ -6316,6 +6338,19 @@ snapshots:
       '@antfu/utils': 9.2.0
       '@iconify/types': 2.0.0
       debug: 4.4.1(supports-color@10.2.2)
+      globals: 15.15.0
+      kolorist: 1.8.0
+      local-pkg: 1.1.2
+      mlly: 1.8.0
+    transitivePeerDependencies:
+      - supports-color
+
+  '@iconify/utils@3.0.2':
+    dependencies:
+      '@antfu/install-pkg': 1.1.0
+      '@antfu/utils': 9.2.0
+      '@iconify/types': 2.0.0
+      debug: 4.4.3
       globals: 15.15.0
       kolorist: 1.8.0
       local-pkg: 1.1.2
@@ -7398,7 +7433,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.43.0(typescript@5.9.3)
       '@typescript-eslint/types': 8.43.0
-      debug: 4.4.1(supports-color@10.2.2)
+      debug: 4.4.3
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
@@ -7495,6 +7530,8 @@ snapshots:
 
   '@unocss/core@66.5.2': {}
 
+  '@unocss/core@66.5.3': {}
+
   '@unocss/extractor-arbitrary-variants@66.5.2':
     dependencies:
       '@unocss/core': 66.5.2
@@ -7548,6 +7585,14 @@ snapshots:
     dependencies:
       '@iconify/utils': 3.0.1
       '@unocss/core': 66.5.2
+      ofetch: 1.4.1
+    transitivePeerDependencies:
+      - supports-color
+
+  '@unocss/preset-icons@66.5.3':
+    dependencies:
+      '@iconify/utils': 3.0.2
+      '@unocss/core': 66.5.3
       ofetch: 1.4.1
     transitivePeerDependencies:
       - supports-color

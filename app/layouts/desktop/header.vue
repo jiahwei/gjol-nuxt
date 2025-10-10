@@ -7,11 +7,13 @@
         <span class="text-primary font-nunito leading-[20px]">GjoL DB</span>
       </div>
 
-      <div class="flex items-center gap-space-md">
-        <div class="cursor-pointer text-primary hover:font-600 " v-if="isHome && false"
-          @click="navigateTo('/faq')">
+      <div class="flex flex-row items-center gap-space-md">
+        <div class="cursor-pointer text-primary hover:font-600 " v-if="isHome && false" @click="navigateTo('/faq')">
           FAQ
         </div>
+        <a href="https://github.com/jiahwei" target="_blank">
+          <div class="i-tabler-brand-github-filled h-[18px] w-[18px] cursor-pointer text-primary hover:text-link"></div>
+        </a>
         <button class="cursor-pointer text-primary"
           :class="isDark ? 'i-material-symbols:nightlight-outline' : 'i-material-symbols:sunny-outline'"
           @click="changeColorMode" />
