@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col  justify-center items-center" ref="homeDom">
-    <newsBulletin id="news" class="bg-page border-b border-gray-200 dark:border-gray-700"
+    <newsBulletin id="news" class="bg-page border-b border-[var(--bg-color-borer)]"
       @updateIsSuspended="setIsSuspended" />
-    <version id="version" class="bg-page border-b border-gray-200 dark:border-gray-700" />
-    <topic id="topic" class="bg-page border-b border-gray-200 dark:border-gray-700" />
+    <version id="version" class="bg-page border-b border-[var(--bg-color-borer)]" />
+    <topic id="topic" class="bg-page border-b border-[var(--bg-color-borer)]" />
     <ClientOnly>
       <!-- <feature id="feature" class="bg-page" /> -->
       <faq id="faq" class="bg-page" />
