@@ -5,8 +5,8 @@
     <version id="version" class="bg-page border-b border-gray-200 dark:border-gray-700" />
     <topic id="topic" class="bg-page border-b border-gray-200 dark:border-gray-700" />
     <ClientOnly>
-      <feature id="feature" class="bg-page" />
-
+      <!-- <feature id="feature" class="bg-page" /> -->
+      <faq id="faq" class="bg-page" />
     </ClientOnly>
   </div>
 </template>
@@ -17,6 +17,8 @@ import version from '~/components/index/version.vue';
 import newsBulletin from '~/components/index/newsBulletin.vue';
 import topic from '~/components/index/topic.vue';
 import feature from '~/components/index/feature.vue';
+import faq from '~/components/index/faq.vue';
+
 
 
 const homeDom = ref<HTMLElement | null>(null)
