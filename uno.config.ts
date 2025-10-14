@@ -3,7 +3,6 @@ import {
   defineConfig,
   presetAttributify,
   presetIcons,
-  presetTypography,
   presetWind4,
   presetWebFonts,
   transformerDirectives,
@@ -23,8 +22,17 @@ export default defineConfig({
       },
     }),
     presetAttributify(),
-    presetIcons(),
-    presetTypography(),
+    presetIcons({
+      // 只加载实际使用的图标
+      collections: {
+        'material-symbols': () => import('@iconify-json/material-symbols/icons.json').then(i => i.default),
+        'tabler': () => import('@iconify-json/tabler/icons.json').then(i => i.default),
+      },
+      extraProperties: {
+        'display': 'inline-block',
+        'vertical-align': 'middle',
+      }
+    }),
     presetWebFonts({
       provider: 'google',
       fonts: {

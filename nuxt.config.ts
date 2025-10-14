@@ -82,12 +82,33 @@ export default defineNuxtConfig({
       rollupOptions:{
         output:{
           manualChunks(id){
+            // ECharts 相关代码分离
             if(id.includes('echarts')){
               return 'echarts'
             }
+            // Vue 生态系统
+            if(id.includes('vue') || id.includes('@vue')){
+              return 'vue-ecosystem'
+            }
+            // VueUse 工具库
+            if(id.includes('@vueuse')){
+              return 'vueuse'
+            }
+            // Ark UI 组件库
+            if(id.includes('@ark-ui')){
+              return 'ark-ui'
+            }
+            // UnoCSS 相关
+            if(id.includes('unocss') || id.includes('@unocss')){
+              return 'unocss'
+            }
+            // Node modules 中的大型库
+            if(id.includes('node_modules')){
+              return 'vendor'
+            }
           }
         }
-      }
+      },
     }
   }
 })
