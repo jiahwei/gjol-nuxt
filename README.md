@@ -1,10 +1,12 @@
-# Nuxt 3 Minimal Starter
+# GjoL DB
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+古网公告数据统计网站前端项目，项目通过爬虫技术自动收集游戏公告内容，依据版本分类公告，并对公告段落进行无监督文本分类。
 
-## Setup
+## 🌐 项目地址
 
-Make sure to install the dependencies:
+访问网站：[gjoldb.info](https://gjoldb.info)
+
+## 安装依赖
 
 ```bash
 # npm
@@ -20,9 +22,7 @@ yarn install
 bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## 运行项目
 
 ```bash
 # npm
@@ -37,41 +37,3 @@ yarn dev
 # bun
 bun run dev
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-
-npx openapi-typescript http://127.0.0.1:8000/openapi.json -o ./app/api-types/api.d.ts
