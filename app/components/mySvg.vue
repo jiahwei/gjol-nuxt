@@ -4,16 +4,33 @@
 </template>
 
 <script lang="ts" setup>
-import defaultSvg from '~/assets/svg/version.svg?raw'
-
-const props = defineProps({
-  svgContent: {
-    type: String,
-    default: defaultSvg
-  }
+type SvgType = 'version' | 'topic' | 'feature'
+interface MySvgProps {
+  type: SvgType
+}
+const props = withDefaults(defineProps<MySvgProps>(), {
+  type: 'version'
 })
+
+const files = import.meta.glob<string>('~/assets/svg/**/*.svg', {
+  query: '?raw',
+  import: 'default'
+})
+const svgContent = shallowRef<string>('')
+
+function resolveKey(type: SvgType) {
+  return `/assets/svg/${type}.svg`
+}
+
+watch(
+  () => props.type,
+  async (t) => {
+    const key = resolveKey(t)
+    const loader = files[key]
+    svgContent.value = loader ? await loader() : ''
+  },
+  { immediate: true }
+)
+
+
 </script>
-
-<style>
-
-</style>

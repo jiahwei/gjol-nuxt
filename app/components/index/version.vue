@@ -1,6 +1,6 @@
 <template>
   <div class="version-page-layout position-relative">
-    <my-svg :svgContent="versionSvg" />
+    <my-svg :type="'version'" />
     <span class="desc-content w-auto justify-self-center">本站收集了自古剑奇谭网络版（以下简称“古网”）开服以来的所有官方公告，并依据版本对公告进行分类和统计。</span>
     <versionChart id="versionChart"/>
     <my-button
@@ -25,7 +25,6 @@
 
 <script lang="ts" setup>
 import versionChart from './versionChart.vue'
-import versionSvg from '~/assets/svg/version.svg?raw'
 import versionDesc from './versionDesc.vue'
 import { Collapsible, useCollapsible } from '@ark-ui/vue/collapsible'
 // const { isMobile } = useDeviceType()

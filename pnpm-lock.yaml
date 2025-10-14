@@ -87,6 +87,9 @@ importers:
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
+      rollup-plugin-visualizer:
+        specifier: ^6.0.4
+        version: 6.0.4(rollup@4.52.4)
       stylelint:
         specifier: ^16.24.0
         version: 16.24.0(typescript@5.9.3)

@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { visualizer } from 'rollup-plugin-visualizer'
+
 export default defineNuxtConfig({
   app: {
     head: {
@@ -29,6 +31,10 @@ export default defineNuxtConfig({
   devServer: {
     port: 3000,
     host: '0.0.0.0',
+  },
+
+  build:{
+    analyze: false,
   },
 
   css: ['~/assets/css/theme.css'],
@@ -68,4 +74,20 @@ export default defineNuxtConfig({
       stylistic: true,
     },
   },
+
+  vite:{
+    plugins: [visualizer({ filename: 'stats.html', gzipSize: true, brotliSize: true })],
+
+    build:{
+      rollupOptions:{
+        output:{
+          manualChunks(id){
+            if(id.includes('echarts')){
+              return 'echarts'
+            }
+          }
+        }
+      }
+    }
+  }
 })
