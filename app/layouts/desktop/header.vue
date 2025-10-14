@@ -14,9 +14,11 @@
         <a href="https://github.com/jiahwei" target="_blank">
           <div class="i-tabler:brand-github h-[18px] w-[18px] cursor-pointer text-primary hover:text-link"></div>
         </a>
-        <button class="cursor-pointer text-primary"
-          :class="isDark ? 'i-material-symbols:nightlight-outline' : 'i-material-symbols:sunny-outline'"
-          @click="changeColorMode" />
+        <ClientOnly>
+          <button class="cursor-pointer text-primary"
+            :class="isDark ? 'i-material-symbols:nightlight-outline' : 'i-material-symbols:sunny-outline'"
+            @click="changeColorMode" />
+        </ClientOnly>
       </div>
     </div>
   </header>

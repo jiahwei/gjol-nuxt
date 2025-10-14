@@ -88,26 +88,24 @@ echarts.use([LineChart, TitleComponent, GridComponent, TooltipComponent, LegendC
 const chartContainer = shallowRef<HTMLElement | null>(null);
 const chartInstance = shallowRef<echarts.ECharts | null>(null);
 
-// const colorMode = useColorMode()
-// const othercConfig = computed(() => ({
-
-//   tooltip: {
-//     extraCssText: colorMode.value === 'dark' ? 'background-color: #1e2939;' : 'background-color: #fff;'
-//   }
-// }))
-// const { setOtherConfig } = useChartsColorMode(chartInstance, '#171717', '#f5f5f5', othercConfig)
-// const { setOtherConfig } = useChartsColorMode(chartInstance)
+const colorMode = useColorMode()
+const othercConfig = computed(() => ({
+  tooltip: {
+    extraCssText: colorMode.value === 'dark' ? 'background-color: #242424;' : 'background-color: #fff;'
+  }
+}))
+const { setOtherConfig } = useChartsColorMode(chartInstance,othercConfig)
 
 useChartsAutoSize(chartInstance)
 
 function tooltipFormatter(params: any) {
   const sourceItem = params[0].data as resolveList
   return `
-  <div class="p-0 bg-white dark:bg-gray-800 flex flex-col gap-space-md max-w-[200px]">
-    <span class="color-[var(--text-color-primary)] font-bold break-words">${sourceItem.acronyms}</span>
-    <span class="font-medium ">开始于：${sourceItem.startDate}</span>
-    <span class="font-medium break-words whitespace-normal">结束于：${sourceItem.endDate}</span>
-    <span class="font-medium break-words whitespace-normal">公告共<span class="font-bold px-1">${sourceItem.totalVersionLen.toLocaleString()}</span>字</span>
+  <div class="p-0 bg-page flex flex-col gap-space-md max-w-[200px]">
+    <span class="text-primary text-base font-bold break-words">${sourceItem.acronyms}</span>
+    <span class="font-medium text-sm text-primary">开始于：${sourceItem.startDate}</span>
+    <span class="font-medium text-sm break-words whitespace-normal text-primary">结束于：${sourceItem.endDate}</span>
+    <span class="font-medium text-sm break-words whitespace-normal text-primary">公告共<span class="font-bold px-1">${sourceItem.totalVersionLen.toLocaleString()}</span>字</span>
   </div>
   `
 }
@@ -261,7 +259,7 @@ function initChart() {
       }],
   }
   chartInstance.value.setOption(option);
-  // setOtherConfig()
+  setOtherConfig()
 }
 
 const { isVisible } = useComIsVisible('version')

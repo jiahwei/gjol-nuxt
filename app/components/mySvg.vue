@@ -1,5 +1,5 @@
 <template>
-  <div v-html="svgContent" class="text-primary w-1/1 xl:w-1/2 2xl:w-1/3">
+  <div v-html="svgContent" class="text-primary w-1/1 md:w-1/2 2xl:w-1/3">
   </div>
 </template>
 

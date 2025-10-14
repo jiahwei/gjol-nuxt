@@ -26,11 +26,15 @@ export default defineNuxtConfig({
     },
   },
 
+  devServer: {
+    port: 3000,
+    host: '0.0.0.0',
+  },
+
   css: ['~/assets/css/theme.css'],
 
   colorMode: {
     preference: 'system', // default value of $colorMode.preference
-    fallback: 'light', // fallback value if not system preference found
     classSuffix: '',
   },
 
