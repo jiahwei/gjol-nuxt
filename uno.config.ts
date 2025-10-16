@@ -25,8 +25,8 @@ export default defineConfig({
     presetIcons({
       // 只加载实际使用的图标
       collections: {
-        'material-symbols': () => import('@iconify-json/material-symbols/icons.json').then(i => i.default),
-        'tabler': () => import('@iconify-json/tabler/icons.json').then(i => i.default),
+        'material-symbols': () => import('@iconify-json/material-symbols/icons.json').then(i => i.default) as any,
+        'tabler': () => import('@iconify-json/tabler/icons.json').then(i => i.default) as any,
       },
       extraProperties: {
         'display': 'inline-block',
@@ -43,7 +43,7 @@ export default defineConfig({
           },
           {
             name: 'Noto Serif', // 英文衬线
-            weights: ['400', '500', '700'],
+            weights: ['400'],
           },
         ],
       },
