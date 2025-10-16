@@ -39,7 +39,7 @@ export default defineConfig({
         serif: [
           {
             name: 'Noto Serif SC', // 中文简体
-            weights: ['400', '500', '700'],
+            weights: ['400', '500'],
           },
           {
             name: 'Noto Serif', // 英文衬线
