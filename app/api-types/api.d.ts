@@ -174,10 +174,38 @@ export interface paths {
         /**
          * Fix All Bulletin
          * @description 补全全部公告
+         *     Args:
+         *         page_num (int, optional): 要下载的公告页号. Defaults to 1.目前最大76页
          */
         get: operations["fix_all_bulletin_dev_fixAllBulletin_get"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/auth/isOpenManage": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Is Open Manage
+         * @description 判断设备是否在管理设备列表中
+         *
+         *     Args:
+         *         payload (IsOpenManagePayload): 认证服务的入参类型
+         *
+         *     Returns:
+         *         Response[IsOpenManageResponse]: 认证服务的出参类型
+         */
+        post: operations["is_open_manage_auth_isOpenManage_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -343,6 +371,44 @@ export interface components {
             detail?: components["schemas"]["ValidationError"][];
         };
         /**
+         * IsOpenManagePayload
+         * @description 认证服务的入参类型
+         *
+         *     Args:
+         *         id (str): 加密后的设备ID
+         *         sig (str): 签名
+         *         iv (str): 初始化向量
+         */
+        IsOpenManagePayload: {
+            /**
+             * Id
+             * @default
+             */
+            id: string;
+            /**
+             * Sig
+             * @default
+             */
+            sig: string;
+            /**
+             * Iv
+             * @default
+             */
+            iv: string;
+        };
+        /**
+         * IsOpenManageResponse
+         * @description 认证服务的出参类型
+         *
+         */
+        IsOpenManageResponse: {
+            /**
+             * Isopenmanage
+             * @default false
+             */
+            isOpenManage: boolean;
+        };
+        /**
          * ListInVersionReturn
          * @description 接口“bulletins/listInVersion”的返回参数
          *
@@ -379,6 +445,93 @@ export interface components {
          * @enum {string}
          */
         ParagraphTopic: "格式" | "无更新" | "商城" | "职业调整" | "通用调整" | "PVP" | "PVE" | "PVX";
+        /** Response[BulletinDB] */
+        Response_BulletinDB_: {
+            /**
+             * Code
+             * @default 200
+             */
+            code: number;
+            /**
+             * Message
+             * @default OK
+             */
+            message: string;
+            data?: components["schemas"]["BulletinDB"] | null;
+        };
+        /** Response[BulletinInfo] */
+        Response_BulletinInfo_: {
+            /**
+             * Code
+             * @default 200
+             */
+            code: number;
+            /**
+             * Message
+             * @default OK
+             */
+            message: string;
+            data?: components["schemas"]["BulletinInfo"] | null;
+        };
+        /** Response[IsOpenManageResponse] */
+        Response_IsOpenManageResponse_: {
+            /**
+             * Code
+             * @default 200
+             */
+            code: number;
+            /**
+             * Message
+             * @default OK
+             */
+            message: string;
+            data?: components["schemas"]["IsOpenManageResponse"] | null;
+        };
+        /** Response[NoneType] */
+        Response_NoneType_: {
+            /**
+             * Code
+             * @default 200
+             */
+            code: number;
+            /**
+             * Message
+             * @default OK
+             */
+            message: string;
+            /** Data */
+            data?: null;
+        };
+        /** Response[list[BulletinDB]] */
+        Response_list_BulletinDB__: {
+            /**
+             * Code
+             * @default 200
+             */
+            code: number;
+            /**
+             * Message
+             * @default OK
+             */
+            message: string;
+            /** Data */
+            data?: components["schemas"]["BulletinDB"][] | null;
+        };
+        /** Response[list[ListInVersionReturn]] */
+        Response_list_ListInVersionReturn__: {
+            /**
+             * Code
+             * @default 200
+             */
+            code: number;
+            /**
+             * Message
+             * @default OK
+             */
+            message: string;
+            /** Data */
+            data?: components["schemas"]["ListInVersionReturn"][] | null;
+        };
         /** ValidationError */
         ValidationError: {
             /** Location */
@@ -414,7 +567,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["BulletinDB"];
+                    "application/json": components["schemas"]["Response_BulletinDB_"];
                 };
             };
             /** @description Validation Error */
@@ -447,7 +600,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["BulletinDB"][];
+                    "application/json": components["schemas"]["Response_list_BulletinDB__"];
                 };
             };
             /** @description Validation Error */
@@ -476,7 +629,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ListInVersionReturn"][];
+                    "application/json": components["schemas"]["Response_list_ListInVersionReturn__"];
                 };
             };
         };
@@ -496,7 +649,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["BulletinInfo"];
+                    "application/json": components["schemas"]["Response_BulletinInfo_"];
                 };
             };
         };
@@ -518,9 +671,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": {
-                        [key: string]: string | components["schemas"]["BulletinDB"][];
-                    };
+                    "application/json": components["schemas"]["Response_list_BulletinDB__"];
                 };
             };
             /** @description Validation Error */
@@ -549,7 +700,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": components["schemas"]["Response_NoneType_"];
                 };
             };
         };
@@ -571,7 +722,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": components["schemas"]["Response_NoneType_"];
                 };
             };
             /** @description Validation Error */
@@ -589,6 +740,7 @@ export interface operations {
         parameters: {
             query?: {
                 pageNum?: number;
+                reversed?: boolean;
             };
             header?: never;
             path?: never;
@@ -602,7 +754,40 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": components["schemas"]["Response_NoneType_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    is_open_manage_auth_isOpenManage_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["IsOpenManagePayload"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Response_IsOpenManageResponse_"];
                 };
             };
             /** @description Validation Error */
