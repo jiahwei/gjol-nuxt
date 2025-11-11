@@ -15,7 +15,7 @@ if [ -f .env.deploy ]; then
 fi
 
 # 从环境变量读取配置，提供默认值
-SERVER_USER="${DEPLOY_SERVER_USER:-root}"
+SERVER_USER="${DEPLOY_SERVER_USER:-deploy}"
 SERVER_IP="${DEPLOY_SERVER_IP:-}"
 SERVER_PATH="${DEPLOY_SERVER_PATH:-/tmp}"
 SSH_KEY="${DEPLOY_SSH_KEY:-~/.ssh/id_rsa}"
