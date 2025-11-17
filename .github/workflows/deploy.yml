@@ -1,11 +1,8 @@
 name: Deploy GjolWeb
-
 on:
   push:
-    branches:
-      - dev
+    branches: [ "dev" ]
   workflow_dispatch:
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -19,33 +16,33 @@ jobs:
       DEPLOY_CONTAINER_NAME: gjol-nuxt
       DEPLOY_CONTAINER_PORT: 3001
       DEPLOY_RUNTIME: podman
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
-
       - name: Setup PNPM
         uses: pnpm/action-setup@v3
         with:
           version: 9
           run_install: false
-
+      - name: Ensure PNPM is available
+        run: |
+          node -v
+          corepack enable || true
+          corepack prepare pnpm@9 --activate || npm i -g pnpm@9
+          pnpm -v
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
       - name: Prepare SSH key and known_hosts
         run: |
           mkdir -p ~/.ssh
           echo "${{ env.DEPLOY_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H "$DEPLOY_SERVER_IP" >> ~/.ssh/known_hosts
-
       - name: Run deploy script
         env:
           DEPLOY_SSH_KEY: ~/.ssh/id_rsa
