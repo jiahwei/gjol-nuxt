@@ -30,23 +30,17 @@ jobs:
           cache: 'pnpm'
 
       - name: Setup PNPM
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
-          run_install: false
-
-      - name: Ensure PNPM is available
         run: |
           node -v
-          corepack enable || true
-          corepack prepare pnpm@9 --activate || npm i -g pnpm@9
+          corepack enable
+          corepack prepare pnpm@9 --activate
           pnpm -v
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build project
-        run: pnpm run build
+      - name: Generate static site
+        run: pnpm run generate -- --dotenv .env.production
 
       - name: Prepare SSH key and known_hosts
         run: |
