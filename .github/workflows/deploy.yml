@@ -29,10 +29,13 @@ jobs:
           node-version-file: '.nvmrc'
 
       - name: Setup PNPM
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+          run_install: false
+      - name: Verify PNPM
         run: |
           node -v
-          corepack enable
-          corepack prepare pnpm@9 --activate
           pnpm -v
 
       - name: Install dependencies
