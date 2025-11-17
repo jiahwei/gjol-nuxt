@@ -2,7 +2,8 @@ name: Deploy GjolWeb
 
 on:
   push:
-    branches: [ "test" ]
+    branches:
+      - dev
   workflow_dispatch:
 
 jobs:

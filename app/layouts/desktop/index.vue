@@ -11,6 +11,8 @@
 <script lang="ts" setup>
 import appHeader from './header.vue'
 import appFooter from './footer.vue'
+
+console.log('desktop layout test')
 </script>
 
 <style>
