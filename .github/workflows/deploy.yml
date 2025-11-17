@@ -35,6 +35,12 @@ jobs:
           corepack enable || true
           corepack prepare pnpm@9 --activate || npm i -g pnpm@9
           pnpm -v
+      - name: Ensure PNPM is available
+        run: |
+          node -v
+          corepack enable || true
+          corepack prepare pnpm@9 --activate || npm i -g pnpm@9
+          pnpm -v
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Prepare SSH key and known_hosts
