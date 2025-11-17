@@ -42,7 +42,12 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate static site
-        run: pnpm run generate -- --dotenv .env.production
+        run: npx nuxi generate --dotenv .env.production
+
+      - name: Verify build output
+        run: |
+          ls -la .output || true
+          test -d .output/public || (echo ".output/public not found"; exit 1)
 
       - name: Prepare SSH key and known_hosts
         run: |
@@ -53,6 +58,7 @@ jobs:
 
       - name: Deploy to server
         run: |
+          ssh $DEPLOY_SERVER_USER@$DEPLOY_SERVER_IP "mkdir -p $DEPLOY_SERVER_PATH/.output/public"
           rsync -avz --delete .output/public/ $DEPLOY_SERVER_USER@$DEPLOY_SERVER_IP:$DEPLOY_SERVER_PATH/.output/public/
           rsync -avz Dockerfile actionsDeploy.sh $DEPLOY_SERVER_USER@$DEPLOY_SERVER_IP:$DEPLOY_SERVER_PATH/
           ssh $DEPLOY_SERVER_USER@$DEPLOY_SERVER_IP "cd $DEPLOY_SERVER_PATH && DEPLOY_IMAGE_TAG=$DEPLOY_IMAGE_TAG DEPLOY_IMAGE_NAME=$DEPLOY_IMAGE_NAME DEPLOY_CONTAINER_NAME=$DEPLOY_CONTAINER_NAME DEPLOY_CONTAINER_PORT=$DEPLOY_CONTAINER_PORT DEPLOY_RUNTIME=$DEPLOY_RUNTIME bash ./actionsDeploy.sh"
