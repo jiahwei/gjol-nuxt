@@ -7,6 +7,7 @@ export default defineNuxtConfig({
       title: 'GjolDB',
       meta: [
         { name: 'description', content: 'gjol DB收集、统计和分析古网的公告数据。' },
+        { name: 'baidu-site-verification', content: 'codeva-Ae8HiaiU9b' },
       ],
     },
   },

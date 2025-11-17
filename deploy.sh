@@ -83,16 +83,16 @@ echo "在服务器上部署容器..."
 ssh -i ${SSH_KEY} ${SERVER_USER}@${SERVER_IP} << EOSSH
   # 加载镜像
   echo "加载镜像..."
-  docker load -i ${SERVER_PATH}/${IMAGE_NAME}-${IMAGE_TAG}.tar
+  podman load -i ${SERVER_PATH}/${IMAGE_NAME}-${IMAGE_TAG}.tar
 
   # 停止并删除旧容器（如果存在）
   echo "停止旧容器..."
-  docker stop ${CONTAINER_NAME} 2>/dev/null || true
-  docker rm ${CONTAINER_NAME} 2>/dev/null || true
+  podman stop ${CONTAINER_NAME} 2>/dev/null || true
+  podman rm ${CONTAINER_NAME} 2>/dev/null || true
 
   # 运行新容器
   echo "启动新容器..."
-  docker run -d --name ${CONTAINER_NAME} \
+  podman run -d --name ${CONTAINER_NAME} \
     -p ${CONTAINER_PORT}:3001 \
     --restart unless-stopped \
     ${IMAGE_NAME}:${IMAGE_TAG}
@@ -103,7 +103,7 @@ ssh -i ${SSH_KEY} ${SERVER_USER}@${SERVER_IP} << EOSSH
 
   # 显示容器状态
   echo "容器状态:"
-  docker ps | grep ${CONTAINER_NAME}
+  podman ps | grep ${CONTAINER_NAME}
 EOSSH
 
 # 清理本地临时文件
