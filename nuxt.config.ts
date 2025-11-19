@@ -77,18 +77,25 @@ export default defineNuxtConfig({
     },
   },
 
+  sourcemap: {
+    server: true,
+    client: true,
+  },
+
+
   hooks: {
     // 仅在客户端构建时执行，避免在服务器端构建时出错
     // 服务端打包时，某些 chunk 被错误拆分，导致变量初始化顺序错乱 → 出现 Cannot access 'Qf' before initialization。
-    'vite:extendConfig'(config, { isClient }) {
+    'vite:extendConfig'(config, { isClient, isServer }) {
       if (isClient) {
         // 添加插件
         config.plugins?.push(visualizer({ filename: 'stats.html', gzipSize: true, brotliSize: true }) as unknown as PluginOption)
 
-        // 修改 rollupOptions
-        if (config.build?.rollupOptions?.output) {
-          const output = Array.isArray(config.build.rollupOptions.output) ? config.build.rollupOptions.output[0] : config.build.rollupOptions.output
+        const output = Array.isArray(config.build?.rollupOptions?.output)
+          ? config.build.rollupOptions.output[0]
+          : config.build?.rollupOptions?.output
 
+        if (output) {
           // @ts-ignore
           output.manualChunks = (id: string) => {
             if (id.includes('echarts')) return 'echarts'
@@ -100,6 +107,17 @@ export default defineNuxtConfig({
           }
         }
       }
-    },
+
+      // 强制清理服务端的 manualChunks，避免污染 SSR
+      if (isServer && config.build?.rollupOptions?.output) {
+        const output = Array.isArray(config.build.rollupOptions.output)
+          ? config.build.rollupOptions.output[0]
+          : config.build.rollupOptions.output
+        if (output && 'manualChunks' in output) {
+          // @ts-ignore
+          delete output.manualChunks
+        }
+      }
+    }
   },
 })

@@ -2,15 +2,15 @@
   <header :class="{ 'border-b border-[var(--bg-color-borer)]': isTop }"
     class="h-[var(--height-header)] bg-page z-50 sticky top-0 ">
     <div class="h-full flex items-center justify-between layout-other">
-      <div class="flex items-center gap-space-sm cursor-pointer" @click="navigateTo('/')">
+      <NuxtLink to="/" class="flex items-center gap-space-sm cursor-pointer">
         <div class="text-[24px] i-material-symbols:database dark:text-white" />
         <span class="text-primary font-nunito leading-[20px]">GjoL DB</span>
-      </div>
+      </NuxtLink>
 
       <div class="flex flex-row items-center gap-space-md">
-        <div class="cursor-pointer text-primary hover:font-600 " v-if="isHome && false" @click="navigateTo('/faq')">
+        <NuxtLink to="/faq" class="cursor-pointer text-primary hover:font-600 " v-if="isHome && false">
           FAQ
-        </div>
+        </NuxtLink>
         <a href="https://github.com/jiahwei" target="_blank">
           <div class="i-tabler:brand-github h-[18px] w-[18px] cursor-pointer text-primary hover:text-link"></div>
         </a>
