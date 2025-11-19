@@ -5,7 +5,7 @@
     <version id="version" class="bg-page border-b border-[var(--bg-color-borer)]" />
     <topic id="topic" class="bg-page border-b border-[var(--bg-color-borer)]" />
     <ClientOnly>
-      <!-- <feature id="feature" class="bg-page" /> -->
+      <feature id="feature" class="bg-page" />
       <faq id="faq" class="bg-page" />
     </ClientOnly>
   </div>

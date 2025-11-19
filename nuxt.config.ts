@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { defineNuxtConfig } from 'nuxt/config'
 import { visualizer } from 'rollup-plugin-visualizer'
 import type { PluginOption } from 'vite'
 
@@ -41,8 +42,9 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/theme.css'],
 
+  // @ts-ignore
   colorMode: {
-    preference: 'system', // default value of $colorMode.preference
+    preference: 'system',
     classSuffix: '',
   },
 
@@ -57,7 +59,7 @@ export default defineNuxtConfig({
     '/': { static: true },
   },
 
-  compatibilityDate: '2025-10-09',
+  compatibilityDate: '2025-11-09',
 
   nitro: {
     preset: 'static',
@@ -65,10 +67,6 @@ export default defineNuxtConfig({
       routes: ['/'],
       crawlLinks: true,
     },
-  },
-
-  typescript: {
-    typeCheck: true,
   },
 
   eslint: {
@@ -82,7 +80,6 @@ export default defineNuxtConfig({
     client: true,
   },
 
-
   hooks: {
     // 仅在客户端构建时执行，避免在服务器端构建时出错
     // 服务端打包时，某些 chunk 被错误拆分，导致变量初始化顺序错乱 → 出现 Cannot access 'Qf' before initialization。
@@ -92,18 +89,17 @@ export default defineNuxtConfig({
         config.plugins?.push(visualizer({ filename: 'stats.html', gzipSize: true, brotliSize: true }) as unknown as PluginOption)
 
         const output = Array.isArray(config.build?.rollupOptions?.output)
-          ? config.build.rollupOptions.output[0]
+          ? config.build?.rollupOptions?.output[0]
           : config.build?.rollupOptions?.output
 
         if (output) {
-          // @ts-ignore
           output.manualChunks = (id: string) => {
             if (id.includes('echarts')) return 'echarts'
             if (id.includes('vue') || id.includes('@vue')) return 'vue-ecosystem'
             if (id.includes('@vueuse')) return 'vueuse'
             if (id.includes('@ark-ui')) return 'ark-ui'
             if (id.includes('unocss') || id.includes('@unocss')) return 'unocss'
-            if (id.includes('node_modules')) return 'vendor'
+            // if (id.includes('node_modules')) return 'vendor'
           }
         }
       }

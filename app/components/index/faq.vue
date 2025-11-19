@@ -41,7 +41,7 @@ const faqItems = ref([
         <Accordion.ItemTrigger class="flex items-center justify-between w-full py-space-md">
           <span class="font-500 text-lg">{{ item.question }}</span>
           <Accordion.ItemIndicator
-            class=" data-[state=open]:rotate-90 rotate-[-90deg]">
+            class=" data-[state=open]:rotate-90 rotate-[-90deg] flex items-center justify-center">
             <div class="w-[16px] h-[16px] text-primary  cursor-pointer i-material-symbols-arrow-back-ios-new-rounded">
             </div>
           </Accordion.ItemIndicator>
