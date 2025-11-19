@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { visualizer } from 'rollup-plugin-visualizer'
+import type { PluginOption } from 'vite'
 
 export default defineNuxtConfig({
   app: {
@@ -34,7 +35,7 @@ export default defineNuxtConfig({
     host: '0.0.0.0',
   },
 
-  build:{
+  build: {
     analyze: false,
   },
 
@@ -47,9 +48,9 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://127.0.0.1:8000',
-    public : {
+    public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE,
-    }
+    },
   },
 
   routeRules: {
@@ -76,40 +77,29 @@ export default defineNuxtConfig({
     },
   },
 
-  vite:{
-    plugins: [visualizer({ filename: 'stats.html', gzipSize: true, brotliSize: true })],
+  hooks: {
+    // 仅在客户端构建时执行，避免在服务器端构建时出错
+    // 服务端打包时，某些 chunk 被错误拆分，导致变量初始化顺序错乱 → 出现 Cannot access 'Qf' before initialization。
+    'vite:extendConfig'(config, { isClient }) {
+      if (isClient) {
+        // 添加插件
+        config.plugins?.push(visualizer({ filename: 'stats.html', gzipSize: true, brotliSize: true }) as unknown as PluginOption)
 
-    build:{
-      rollupOptions:{
-        output:{
-          manualChunks(id){
-            // ECharts 相关代码分离
-            if(id.includes('echarts')){
-              return 'echarts'
-            }
-            // Vue 生态系统
-            if(id.includes('vue') || id.includes('@vue')){
-              return 'vue-ecosystem'
-            }
-            // VueUse 工具库
-            if(id.includes('@vueuse')){
-              return 'vueuse'
-            }
-            // Ark UI 组件库
-            if(id.includes('@ark-ui')){
-              return 'ark-ui'
-            }
-            // UnoCSS 相关
-            if(id.includes('unocss') || id.includes('@unocss')){
-              return 'unocss'
-            }
-            // Node modules 中的大型库
-            if(id.includes('node_modules')){
-              return 'vendor'
-            }
+        // 修改 rollupOptions
+        if (config.build?.rollupOptions?.output) {
+          const output = Array.isArray(config.build.rollupOptions.output) ? config.build.rollupOptions.output[0] : config.build.rollupOptions.output
+
+          // @ts-ignore
+          output.manualChunks = (id: string) => {
+            if (id.includes('echarts')) return 'echarts'
+            if (id.includes('vue') || id.includes('@vue')) return 'vue-ecosystem'
+            if (id.includes('@vueuse')) return 'vueuse'
+            if (id.includes('@ark-ui')) return 'ark-ui'
+            if (id.includes('unocss') || id.includes('@unocss')) return 'unocss'
+            if (id.includes('node_modules')) return 'vendor'
           }
         }
-      },
-    }
-  }
+      }
+    },
+  },
 })
