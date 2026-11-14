@@ -40,13 +40,6 @@ function formatNumber(value: number) {
           <a class="primary-link" href="#journey">探索更新历程 <span aria-hidden="true">↗</span></a><a class="secondary-link" href="#archive">查看公告档案 <span aria-hidden="true">→</span></a>
         </div>
       </div>
-      <div class="hero-visual" aria-hidden="true">
-        <span class="visual-title">THE JOURNEY, RECORDED</span>
-        <div class="visual-bars">
-          <div v-for="number in 10" :key="number" :class="`bar bar-${number}`" />
-        </div>
-        <span class="visual-caption">图形示意</span>
-      </div>
     </div>
     <div class="overview-data" aria-label="档案全景">
       <dl class="totals">
@@ -68,7 +61,7 @@ function formatNumber(value: number) {
         </button>
       </p>
       <p v-else-if="overview" class="coverage">
-        公告来源：{{ formatNumber(overview.totals.sources) }} 篇 · 覆盖范围：{{ overview.coverage.start || '—' }} 至 {{ overview.coverage.end || '—' }} · 已收录来源 / 目录来源：{{ formatNumber(overview.coverage.processedSources) }} / {{ formatNumber(overview.coverage.totalSources) }}<span v-if="!overview.coverage.complete"> · 数据仍在整理</span><br>统计反映当前已收录数据，0 不代表游戏没有更新。公告文字仅表示文本规模。
+        公告来源：{{ formatNumber(overview.totals.sources) }} 篇 · 覆盖范围：{{ overview.coverage.start || '—' }} 至 {{ overview.coverage.end || '—' }} · 已收录来源 / 目录来源：{{ formatNumber(overview.coverage.processedSources) }} / {{ formatNumber(overview.coverage.totalSources) }}<span v-if="!overview.coverage.complete"></span>
       </p>
       <p v-else class="coverage">
         暂无档案数据，数据正在整理中。
@@ -183,7 +176,7 @@ function formatNumber(value: number) {
 <style scoped>
 .section-shell { width: min(1200px, calc(100% - 80px)); margin: 0 auto; }
 .hero { scroll-margin-top: 70px; min-height: 620px; display: flex; flex-direction: column; justify-content: space-between; padding-top: 94px; padding-bottom: 28px; }
-.hero-main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 370px); gap: 8%; align-items: center; flex: 1; }
+.hero-main { display: flex; align-items: center; flex: 1; }
 .section-index { color: var(--brand-color); font: 600 11px/1.5 sans-serif; letter-spacing: .16em; margin: 0 0 22px; }
 h1, h2, h3, p { margin-top: 0; }
 h1 { font: 700 48px/1.2 'Noto Serif SC', 'Songti SC', serif; letter-spacing: .04em; margin-bottom: 27px; color: var(--text-color-primary); }
@@ -193,11 +186,6 @@ h1 { font: 700 48px/1.2 'Noto Serif SC', 'Songti SC', serif; letter-spacing: .04
 .primary-link { display: inline-flex; align-items: center; gap: 36px; padding: 14px 19px; background: var(--bg-color-button); color: var(--text-color-foreground); font: 600 13px sans-serif; text-decoration: none; }
 .primary-link:hover { opacity: .8; }
 .secondary-link { color: var(--text-color-primary); font: 600 13px sans-serif; text-decoration: none; }.secondary-link:hover { color: var(--brand-color); }
-.hero-visual { position: relative; width: 100%; height: 260px; box-sizing: border-box; background: var(--bg-color-secondarypage); padding: 32px; }
-.visual-title, .visual-caption { position: absolute; left: 32px; color: var(--text-color-secondary); font: 10px sans-serif; }
-.visual-title { top: 32px; }.visual-caption { bottom: 24px; }
-.visual-bars { position: absolute; left: 32px; right: 32px; top: 70px; bottom: 55px; display: flex; align-items: end; justify-content: space-between; gap: 8px; }
-.bar { width: 9px; max-width: 9px; border-radius: 5px; background: #d3e0e3; }.bar-1 { height: 23%; }.bar-2 { height: 40%; }.bar-3 { height: 62%; }.bar-4 { height: 46%; }.bar-5 { height: 83%; }.bar-6 { height: 58%; }.bar-7 { height: 100%; background: #4388ac; }.bar-8 { height: 77%; }.bar-9 { height: 54%; }.bar-10 { height: 36%; }
 .totals { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 0; padding: 24px 0 14px; border-top: 1px solid var(--bg-color-borer); }
 .totals > div:not(:first-child) { border-left: 1px solid var(--bg-color-borer); padding-left: 32px; }
 .totals dt { color: var(--text-color-secondary); font: 12px sans-serif; }
@@ -220,5 +208,5 @@ h1 { font: 700 48px/1.2 'Noto Serif SC', 'Songti SC', serif; letter-spacing: .04
 .version-bar { height: 5px; }.version-bar span { display: block; height: 100%; border-radius: 3px; background: var(--brand-color); opacity: .3; }
 .section-note { color: var(--text-color-secondary); font: 12px/1.8 sans-serif; margin: 18px 0 0; }
 .state-box { border-bottom: 1px solid var(--bg-color-borer); padding: 35px 0; color: var(--text-color-secondary); font-size: 14px; line-height: 1.8; }.text-button { color: var(--brand-color); margin-left: 12px; text-decoration: underline; cursor: pointer; }
-@media (max-width: 700px) { .hero { scroll-margin-top: 110px; } .archive-section { scroll-margin-top: 110px; }.section-shell { width: calc(100% - 40px); }.hero { scroll-margin-top: 110px; min-height: 0; padding-top: 65px; padding-bottom: 40px; }.hero-main { grid-template-columns: 1fr; gap: 30px; }.hero-visual { width: min(100%, 370px); height: 210px; }.totals > div:nth-child(odd) { border-left: 0; padding-left: 0; }.totals > div:nth-child(even) { border-left: 1px solid var(--bg-color-borer); padding-left: 20px; }.totals { grid-template-columns: repeat(2, 1fr); gap: 24px 10px; margin-top: 35px; } h1 { font-size: 38px; }.archive-section { padding-top: 75px; padding-bottom: 80px; }.section-heading { display: block; margin-bottom: 35px; }.section-heading > p { margin-top: 18px; }.history-bars { height: 180px; gap: 3px; }.version-table { min-width: 660px; } }
+@media (max-width: 700px) { .hero { scroll-margin-top: 110px; } .archive-section { scroll-margin-top: 110px; }.section-shell { width: calc(100% - 40px); }.hero { scroll-margin-top: 110px; min-height: 0; padding-top: 65px; padding-bottom: 40px; }.totals > div:nth-child(odd) { border-left: 0; padding-left: 0; }.totals > div:nth-child(even) { border-left: 1px solid var(--bg-color-borer); padding-left: 20px; }.totals { grid-template-columns: repeat(2, 1fr); gap: 24px 10px; margin-top: 35px; } h1 { font-size: 38px; }.archive-section { padding-top: 75px; padding-bottom: 80px; }.section-heading { display: block; margin-bottom: 35px; }.section-heading > p { margin-top: 18px; }.history-bars { height: 180px; gap: 3px; }.version-table { min-width: 660px; } }
 </style>
